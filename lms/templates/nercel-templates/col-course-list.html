@@ -1,0 +1,254 @@
+<%!
+    import json
+    from django.utils.translation import ugettext as _
+    from microsite_configuration import microsite
+    from django.core.urlresolvers import reverse
+    from courseware.courses import course_image_url, get_course_about_section
+    from student.models import CourseEnrollment
+    from openedx.core.lib.json_utils import EscapedEdxJSONEncoder
+%>
+<%
+  course_discovery_enabled = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>首页</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/nercel-images/col_logo_cube.png">
+    <link href="/static/css/nercel-css/col_index.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_head.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_bottom.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_copyright.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_mycourse.css" rel="stylesheet"/>
+    <script src="/static/js/nercel-js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<!--页头布局-->
+<div class="col_head_bg max-width">
+    <div class="col_head">
+        <h1><a href="/"><img src="/static/images/nercel-images/col_logo.png" alt="logo" title="师大学堂"/></a></h1>
+
+        <div class="col_nav" id="col_nav">
+            <ul>
+                <li><a href="/" id="col_shouye">首页</a></li>
+                <li><a href="/go_to_school" id="col_xuexiao">学校</a></li>
+                <li><a href="javascript:;" id="col_weike">微课程</a></li>
+                <li><a href="http://122.204.161.231/mainView/navigate/newLogin.jsp" id="col_fenxi">学习分析</a></li>
+            </ul>
+        </div>
+        <%doc><div class="col_search">
+            <input type="text" id="col_search_input" placeholder="搜索你感兴趣的课程"/>
+            <a id="col_search_btn"></a>
+        </div></%doc>
+        <div class="col_mycourse_login">
+            % if user.is_authenticated():
+                <div class="col_mycourse_user">
+                    <%doc><img src="/static/images/nercel-images/mycourse_smalltouxiang.png"/></%doc>
+                    <a href="${reverse('dashboard')}" class="showName">${user.username}</a>
+
+                    <div id="col_mycourse_sanjiao"></div>
+                    <div id="col_drop_down">
+                        <ul>
+                            <li><a href="${reverse('learner_profile', kwargs={'username': user.username})}">我的课程</a>
+                            </li>
+                            <li><a href="${reverse('account_settings')}">账户设置</a></li>
+                            <li><a href="${reverse('logout')}">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            % else:
+                <div class="col_login">
+                    <!--登录前-->
+                    <ul class="pre_login">
+                        <li><a href="">登录</a></li>
+                        <li><a href="/register">注册</a></li>
+                    </ul>
+                </div>
+            % endif
+        </div>
+    </div>
+</div>
+<!--页面头部结束-->
+<!--loginbox-->
+<div class="theme-popover-mask"></div>
+<div class="loginbox_bg">
+    <div class="col_loginbox" id="loginbox">
+        <div class="col_login_mainbody">
+            <div class="col_login_head"></div>
+            <form role="form" id="login-form" method="post" data-remote="true" novalidate class="login">
+                <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+
+                <div class="username">
+                    <input id="email" type="email" name="email" placeholder="登录邮箱">
+                </div>
+                <div class="password">
+                    <input id="password" type="password" name="password" placeholder="密码">
+                </div>
+                <div class="others">
+                    <input class="remember_btn" id="remember-yes" type="checkbox" name="remember" checked="checked">
+                    <label for="remember-yes">记住我</label>
+                    <a class="fr" href="/register" class="g_modal_regbtn" data-click="onClick">现在注册</a>
+                    <a class="fr" href="javascript:;" target="_blank" data-click="onClick">忘记密码？</a>
+                </div>
+                <button class="button" name="submit" type="button" id="submit" onclick="submitForm(event);">登录</button>
+            </form>
+            <div class="close_btn" id="login_close"></div>
+        </div>
+    </div>
+</div>
+<!--中间图片部分-->
+<div class="col_mid max-width">
+    <img src="/static/images/nercel-images/mid_pic.png"/>
+</div>
+<!--课程部分布局-->
+<div class="col_container max-width clear">
+    <div class="col_content clear">
+        <!--课程布局-->
+        <div class="col_content_child">
+            <div class="col_content_child_head">
+                <img src="/static/images/nercel-images/morecourse.png"/>
+                <span class="col_span_text col_morecourse_text">更多课程</span>
+                <span class="col_more"><a href="#">更多>>...</a></span>
+            </div>
+            <ul class="col_content_child_body">
+                %for course in courses:
+                    <li class="col_content_msg" id="${course.id | h}">
+                        <a href="${reverse('about_course', args=[course.id.to_deprecated_string()])}"
+                           class="course-href">
+                            <div class="col_content_courseinfor"><img src="${course_image_url(course)}"/></div>
+                            <div class="col_content_teacherinfor">
+                                <p class="col_content_teachername">${course.display_number_with_default}</p>
+
+                                <p class="col_content_zhicheng">${get_course_about_section(course, 'university')}</p>
+                            </div>
+                            <div class="col_content_msg_footer">
+                                <h5>${get_course_about_section(course, 'title')}</h5>
+                                <img src="/static/images/nercel-images/baoming.png"/>
+
+                                <p>
+                                    <a href="javascript:;">${CourseEnrollment.objects.enrollment_counts(course.id).get("total","未知")}</a>人报名
+                                </p>
+                                <img src="/static/images/nercel-images/kaikeshijian.png"/>
+
+                                <p class="clear-right">开课时间：<a
+                                        href="javascript:;">${course.start_datetime_text()}</a></p>
+                            </div>
+                        </a>
+                    </li>
+                %endfor
+            </ul>
+        </div>
+    </div>
+</div>
+<!--版权信息-->
+<div class="col_copyright_bg max-width">
+    <div class="col_copyright">
+        <span> 版权所有 © 国家数字化学习工程技术研究中心</span>
+        <img src="/static/images/nercel-images/openeDX_logo.png"/>
+    </div>
+</div>
+<script>
+
+    var grayEle = "";
+    //	页面记载完成之后执行
+    $(function () {
+        $("#col_nav a").hover(
+                function () {
+                    $(this).addClass("selfColor");
+                },
+                function () {
+                    $(this).removeClass("selfColor");
+                });
+        //下拉菜单的显示
+        $("#col_mycourse_sanjiao").click(
+                function (event) {
+                    stopEvent(event);
+                    $("#col_drop_down").show();
+                });
+        $("#col_nav a").hover(
+                function () {
+                    $(this).addClass("selfColor");
+                },
+                function () {
+                    $(this).removeClass("selfColor");
+                });
+        $(document).click(function (event) {
+            stopEvent(event);
+            $("#col_drop_down").hide();
+        });
+        $("#col_drop_down li").hover(
+                function () {
+                    $(this).addClass("col_top_shadow");
+                },
+                function () {
+                    $(this).removeClass("col_top_shadow");
+                });
+    });
+    function stopEvent(ev) { //阻止冒泡事件
+        //取消事件冒泡
+        var e = arguments.callee.caller.arguments[0] || event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容
+        if (e && e.stopPropagation) {
+            // this code is for Mozilla and Opera
+            e.stopPropagation();
+        } else if (window.event) {
+            // this code is for IE
+            window.event.cancelBubble = true;
+        }
+    }
+    // 弹出登录框，使整个页面灰掉
+    $("#login").click(function () {
+        $('.theme-popover-mask').show();
+        $('.theme-popover-mask').height($(document).height());
+        $(".loginbox_bg").slideDown(500);
+    });
+    //关闭登录框
+    $("#login_close").click(function () {
+        $('.theme-popover-mask').hide();
+        $(".loginbox_bg").slideUp(500);
+    });
+    function toggleSubmitButton(enable) {
+        //获取id为submit的提交按钮
+        var $submitButton = $('form #submit');
+
+        if (enable) {
+            $submitButton.
+                    removeClass('is-disabled').
+                    attr('aria-disabled', false).
+                    removeProp('disabled').
+                    html("登录");
+        }
+        else {
+            $submitButton.
+                    addClass('is-disabled').
+                    prop('disabled', true).
+                    text("正在登录");
+        }
+    }
+    function submitForm(event) {
+        event.preventDefault();
+        toggleSubmitButton(false);
+        $.ajax({
+            url: "/login_ajax",
+            data: $("#login-form").serialize(),
+            type: "POST",
+            error: function (data) {
+                alert(data.value);
+                alert(data);
+            },
+            success: function (data, textStatus) {
+                var tf = data.success;
+                var msg = data.value;
+                if (tf) {
+                    location.href = "${reverse('dashboard')}";
+                } else {
+                    toggleSubmitButton(true);
+                    alert(msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

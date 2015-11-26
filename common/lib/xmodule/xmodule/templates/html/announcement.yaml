@@ -1,18 +1,19 @@
+#encoding=utf-8
 ---
 metadata:
-    display_name: Announcement
+    display_name: 公告
 data: |
-      <p>To use this template, replace the example text with your own text.</p>
-      <p>When you add the component, be sure to select <strong>Settings</strong> 
-      to specify a <strong>Display Name</strong> and other values that apply.</p>
-      <h3>Announcement Date</h3>
+      <p>按照模板，用你自己的文本替换示例文本。</p>
+      <p>当你要添加组件时，一定要修改<strong>Settings</strong>
+      里面<strong>Display Name</strong>的值和其他参数的值</p>
+      <h3>公告时间</h3>
       <section class='update-description'>
                    <section class='primary'>
-                              <p>Short note that introduces the topic</p>
-                              <p class='author'>Instructor's name</p>
+                              <p>一段简短的描述主题的文字</p>
+                              <p class='author'>教师的名字</p>
                    </section>
-                   <h4>Heading for announcement 1</h4>
-                   <p>Announcement 1 text</p>
-                   <h4>Heading for announcement 2</h4>
-                   <p>Announcement 2 text</p>
+                   <h4>公告标题 1</h4>
+                   <p>公告1文本</p>
+                   <h4>公告标题2</h4>
+                   <p>公告2文本</p>
       </section>

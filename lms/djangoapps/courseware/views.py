@@ -125,20 +125,22 @@ def courses(request):
     """
     courses_list = []
     course_discovery_meanings = getattr(settings, 'COURSE_DISCOVERY_MEANINGS', {})
-    if not settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
-        courses_list = get_courses(request.user, request.META.get('HTTP_HOST'))
-
-        if microsite.get_value("ENABLE_COURSE_SORTING_BY_START_DATE",
+    courses_list = get_courses(request.user, request.META.get('HTTP_HOST'))
+    if microsite.get_value("ENABLE_COURSE_SORTING_BY_START_DATE",
                                settings.FEATURES["ENABLE_COURSE_SORTING_BY_START_DATE"]):
-            courses_list = sort_by_start_date(courses_list)
-        else:
-            courses_list = sort_by_announcement(courses_list)
-
+        courses_list = sort_by_start_date(courses_list)
+    else:
+        courses_list = sort_by_announcement(courses_list)
+    '''
     return render_to_response(
         "courseware/courses.html",
         {'courses': courses_list, 'course_discovery_meanings': course_discovery_meanings}
     )
-
+    '''
+    return render_to_response(
+        "nercel-templates/col-course-list.html",
+        {'courses': courses_list, 'course_discovery_meanings': course_discovery_meanings}
+    )
 
 def render_accordion(user, request, course, chapter, section, field_data_cache):
     """
@@ -895,7 +897,7 @@ def course_about(request, course_id):
 
         # get prerequisite courses display names
         pre_requisite_courses = get_prerequisite_courses_display(course)
-
+        '''
         return render_to_response('courseware/course_about.html', {
             'course': course,
             'staff_access': staff_access,
@@ -919,7 +921,30 @@ def course_about(request, course_id):
             'cart_link': reverse('shoppingcart.views.show_cart'),
             'pre_requisite_courses': pre_requisite_courses
         })
-
+        '''
+        return render_to_response('nercel-templates/col-registerCourse.html', {
+            'course': course,
+            'staff_access': staff_access,
+            'studio_url': studio_url,
+            'registered': registered,
+            'course_target': course_target,
+            'is_cosmetic_price_enabled': settings.FEATURES.get('ENABLE_COSMETIC_DISPLAY_PRICE'),
+            'course_price': course_price,
+            'in_cart': in_cart,
+            'reg_then_add_to_cart_link': reg_then_add_to_cart_link,
+            'show_courseware_link': show_courseware_link,
+            'is_course_full': is_course_full,
+            'can_enroll': can_enroll,
+            'invitation_only': invitation_only,
+            'active_reg_button': active_reg_button,
+            'is_shib_course': is_shib_course,
+            # We do not want to display the internal courseware header, which is used when the course is found in the
+            # context. This value is therefor explicitly set to render the appropriate header.
+            'disable_courseware_header': True,
+            'can_add_course_to_cart': can_add_course_to_cart,
+            'cart_link': reverse('shoppingcart.views.show_cart'),
+            'pre_requisite_courses': pre_requisite_courses
+        })
 
 @login_required
 @cache_control(no_cache=True, no_store=True, must_revalidate=True)

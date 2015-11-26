@@ -1,14 +1,9 @@
 ---
 metadata:
-    display_name: Raw HTML
+    display_name: HTML网页
     editor: raw
 data: |
-      <p>This template is similar to the Text template. The only difference is 
-      that this template opens in the Raw HTML editor rather than in the Visual
-      editor.</p>
+      <p>该模板类似于文档模板。唯一的区别在于该模板是在Raw 网页中而非在可视编辑器中打开.</p>
 
-      <p>The Raw HTML editor saves your HTML exactly as you enter it.
-      You can switch to the Visual editor by clicking the Settings tab and 
-      changing the Editor setting to Visual. Note, however, that some of your 
-      HTML may be modified when you save the component if you switch to the 
-      Visual editor.</p>
+      <p>HTML网页编辑器通过他的Raw属性值保存html网页。网页编辑器可精确按照你进入时的网页形式保存。
+      你可以点击设置按钮切换到可视编辑器并且将编辑器设置为可视。但是，如果你切换到可视编辑器，你的某些网页在你保存成分时可能会被修改.</p>

@@ -1,29 +1,29 @@
 ---
 metadata:
-    display_name: overview
+    display_name: 课程简介
 
 data: |
     <section class="about">
-      <h2>About This Course</h2>
-      <p>Include your long course description here. The long course description should contain 150-400 words.</p>
+      <h2>关于课程</h2>
+      <p>课程的基本信息介绍，字数不超过140字</p>
 
-      <p>This is paragraph 2 of the long course description. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>
+      <p>课程章节的信息</p>
     </section>
 
     <section class="prerequisites">
-      <h2>Requirements</h2>
-      <p>Add information about the skills and knowledge students need to take this course.</p>
+      <h2>课程要求</h2>
+      <p>无任何限制，只需学习前面相关章节即可</p>
     </section>
 
     <section class="course-staff">
-      <h2>Course Staff</h2>
+      <h2>>课程主讲教师</h2>
       <article class="teacher">
         <div class="teacher-image">
           <img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #1">
         </div>
 
-        <h3>Staff Member #1</h3>
-        <p>Biography of instructor/staff member #1</p>
+        <h3>教师组成员 #1</h3>
+        <p>苏州市高级教师 #1</p>
       </article>
 
       <article class="teacher">
@@ -31,22 +31,22 @@ data: |
           <img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #2">
         </div>
 
-        <h3>Staff Member #2</h3>
-        <p>Biography of instructor/staff member #2</p>
+        <h3>教师组成员 #2</h3>
+        <p>苏州市高级教师 #2</p>
       </article>
     </section>
 
     <section class="faq">
       <section class="responses">
-        <h2>Frequently Asked Questions</h2>
+        <h2>常见问题</h2>
         <article class="response">
-          <h3>Do I need to buy a textbook?</h3>
-          <p>No, a free online version of Chemistry: Principles, Patterns, and Applications, First Edition by Bruce Averill and Patricia Eldredge will be available, though you can purchase a printed version (published by FlatWorld Knowledge) if you’d like.</p>
+          <h3>你需要购买课本码？</h3>
+          <p>使用你身边的苏教版教材即可</p>
         </article>
 
         <article class="response">
-          <h3>Question #2</h3>
-          <p>Your answer would be displayed here.</p>
+          <h3>如何获取自己的成绩</h3>
+          <p>询问自己的任课教师</p>
         </article>
       </section>
     </section>

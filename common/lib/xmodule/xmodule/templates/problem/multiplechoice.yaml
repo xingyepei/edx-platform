@@ -1,53 +1,53 @@
 ---
 metadata:
-    display_name: Multiple Choice
+    display_name: 单项选择题
     markdown: |
-       Multiple choice problems allow learners to select only one option. Learners can see all the options along with the problem text.
+       多项选择问题允许学习者选择一个选项。学习者可以在问题文档旁看到所有选项.
 
-       When you add the problem, be sure to select Settings to specify a Display Name and other values that apply.
+       当你添加问题，一定要在设置中明确指出一个现实名字和其他应用的值.
 
-       You can use the following example problem as a model.
+       你可以用下面的案例作为模型.
 
-       >>Which of the following countries has the largest population?<<
-       ( ) Brazil {{ timely feedback -- explain why an almost correct answer is wrong }}
-       ( ) Germany
-       (x) Indonesia
-       ( ) Russia
+       >>下面哪一个国家拥有的人口总数最多?<<
+       ( ) 巴西
+       ( ) 德国
+       (x) 印度尼西亚
+       ( ) 俄罗斯
 
        [explanation]
-       According to September 2014 estimates:
-       The population of Indonesia is approximately 250 million.
-       The population of Brazil  is approximately 200 million.
-       The population of Russia is approximately 146 million.
-       The population of Germany is approximately 81 million.
+       根据2014年9月的统计结果:
+       印度尼西亚的人口总数约为2.5亿.
+       巴西的人口总数约为2亿.
+       俄罗斯的人口总数约为1.46亿.
+       德国的人口总数约为8千1百万.
        [explanation]
 
 data: |
    <problem>
-   <p>Multiple choice problems allow learners to select only one option.
-       Learners can see all the options along with the problem text.</p>
-   <p>When you add the problem, be sure to select <strong>Settings</strong> 
-   to specify a <strong>Display Name</strong> and other values that apply.</p>
-   <p>You can use the following example problem as a model.</p>
-      <p>Which of the following countries has the largest population?</p>
+   <p>多项选择允许学习者只能选择一个选项.
+       学习者可以在问题文档旁看到所有选项.</p>
+   <p>当你添加一个问题，一定要选择 <strong>Settings</strong>
+   明确指出 <strong>显示名称</strong> 和其他应用的值.</p>
+   <p>你可以用以下案例问题作为模型.</p>
+      <p>以下那个国家拥有的人口总数最多?</p>
       <multiplechoiceresponse>
        <choicegroup type="MultipleChoice">
-          <choice correct="false" name="brazil">Brazil
+          <choice correct="false" name="brazil">巴西
             <choicehint>timely feedback -- explain why an almost correct answer is wrong</choicehint>
           </choice>
-          <choice correct="false" name="germany">Germany</choice>
-          <choice correct="true" name="indonesia">Indonesia</choice>
-          <choice correct="false" name="russia">Russia</choice>
+          <choice correct="false" name="germany">德国</choice>
+          <choice correct="true" name="indonesia">印度尼西亚</choice>
+          <choice correct="false" name="russia">俄罗斯</choice>
        </choicegroup>
       </multiplechoiceresponse>
     <solution>
       <div class="detailed-solution">
         <p>Explanation</p>
-        <p>According to September 2014 estimates:</p>
-        <p>The population of Indonesia is approximately 250 million.</p>
-        <p>The population of Brazil  is approximately 200 million.</p>
-        <p>The population of Russia is approximately 146 million.</p>
-        <p>The population of Germany is approximately 81 million.</p>
+        <p>根据2014年9月的统计结果:</p>
+        <p>印度尼西亚的人口总数约为2.5亿.</p>
+        <p>巴西的人口总数约为2亿.</p>
+        <p>俄罗斯的人口总数约为1.46亿.</p>
+        <p>德国的人口总数约为8千1百万.</p>
       </div>
     </solution>
     </problem>

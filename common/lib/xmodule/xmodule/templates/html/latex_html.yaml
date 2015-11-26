@@ -1,6 +1,6 @@
 ---
 metadata:
-    display_name: E-text Written in LaTeX
+    display_name: LaTeX文本工具
     source_code: |
         \subsection{Example of E-text in LaTeX}
 
@@ -12,10 +12,10 @@ metadata:
 
 data: |
     <html>
-        <h3>Example: E-text page</h3>
-        <p>You can write complex equations in LaTeX.</p>
-        <p>When you add the component, be sure to select <strong>Settings</strong> 
-        to specify a <strong>Display Name</strong> and other values that apply.</p>
-        <p>When editing this component, select <strong>Launch Latex Source Compiler</strong> to edit equations.</p>
-        <p>Then, in the equation editor, select <strong>Save and Compile to edX XML</strong> to see the equation in the component.</p>
+        <h3>例子:LaTeX文本工具</h3>
+        <p>你可以在文本工具中编写复杂方程.</p>
+        <p>当你添加成分，确定选择 <strong>Settings</strong>
+        明确 <strong>显示名称</strong> 和其他使用的值.</p>
+        <p>当编辑这个组件，选择 <strong>Launch Latex Source Compiler</strong> 来编辑方程式.</p>
+        <p>再在方程式编辑器中选择<strong>Save and Compile to edX XML</strong> 这样就可以在成分中看到方程式.</p>
     </html>

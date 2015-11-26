@@ -1,0 +1,448 @@
+<%!
+    from django.utils.translation import ugettext as _
+    from django.template import RequestContext
+    import third_party_auth
+    from third_party_auth import pipeline
+    from microsite_configuration import microsite
+    from django.core.urlresolvers import reverse
+    import urllib
+    from django.utils.translation import ungettext
+    from markupsafe import escape
+    from student.models import CourseEnrollment
+    from courseware.courses import course_image_url, get_course_about_section
+    from course_modes.models import CourseMode
+    from courseware.courses import get_course_university_about_section
+    from student.helpers import (
+  VERIFY_STATUS_NEED_TO_VERIFY,
+  VERIFY_STATUS_SUBMITTED,
+  VERIFY_STATUS_APPROVED,
+  VERIFY_STATUS_MISSED_DEADLINE,
+  VERIFY_STATUS_NEED_TO_REVERIFY,
+  DISABLE_UNENROLL_CERT_STATES,
+)
+%>
+<%
+  cert_name_short = settings.CERT_NAME_SHORT
+  cert_name_long = settings.CERT_NAME_LONG
+%>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="icon" type="image/x-icon" href="/static/images/nercel-images/col_logo_cube.png">
+    <link href="/static/css/nercel-css/col_head.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_mycourse.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_bottom.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_copyright.css" rel="stylesheet"/>
+    <script src="/static/js/nercel-js/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--页头布局-->
+<div class="col_head_bg max-width">
+    <div class="col_head">
+        <h1><a href="/"><img src="/static/images/nercel-images/col_logo.png" alt="logo" title="师大学堂"/></a>
+        </h1>
+
+        <div class="col_nav" id="col_nav">
+            <ul>
+                <li><a href="/" id="col_shouye">首页</a></li>
+                <li><a href="/go_to_school" id="col_xuexiao">学校</a></li>
+                <li><a href="javascript:;" id="col_weike">微课程</a></li>
+                <li><a href="http://122.204.161.231/mainView/navigate/newLogin.jsp" id="col_fenxi">学习分析</a></li>
+            </ul>
+        </div>
+       <%doc> <div class="col_search_course">
+            <input type="text" id="col_mycourse_search" placeholder="搜索你感兴趣的课程"/>
+            <img id="col_search_btn" src="/static/images/nercel-images/search.png" width="26px" height="26px">
+        </div></%doc>
+        <div class="col_mycourse_login">
+            <!--登陆之后-->
+            <%doc><div class="col_mycourse_msg">
+                <img src="/static/images/nercel-images/mycourse_msg.png"/>
+
+                <div id="col_mycourse_msg_num">1</div>
+            </div></%doc>
+            <div class="col_mycourse_user">
+               <%doc> <img src="/static/images/nercel-images/mycourse_smalltouxiang.png"/></%doc>
+                <a href="${reverse('dashboard')}" class="showName">${user.username}</a>
+
+                <div id="col_mycourse_sanjiao"></div>
+                <div id="col_drop_down">
+                    <ul>
+                        <li><a href="${reverse('learner_profile', kwargs={'username': user.username})}">我的课程</a></li>
+                        <li><a href="${reverse('account_settings')}">账户设置</a></li>
+                        <li><a href="${reverse('logout')}">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页面头部结束-->
+<!--中间图片部分-->
+<div class="col_mycourse_mid max-width">
+    <div class="col_mycourse_midpic"></div>
+</div>
+<div style="width: 768px;margin: 50px auto;line-height: 150%;">
+    %if message:
+        <section class="dashboard-banner">
+            ${message}
+        </section>
+    %endif
+
+    %if enrollment_message:
+        <section class="dashboard-banner">
+            ${enrollment_message}
+        </section>
+     %endif
+</div>
+<!--中间内容部分-->
+<div class="col_mycourse_container max-width">
+    <div class="col_mycourse_content">
+        <!--内容左侧——学生端布局-->
+
+        <!--内容右侧全部课程-->
+        <div id="col_mycourse_content_right">
+            <!--最上面一行的内容布局-->
+            <div id="col_mycourse_right_top">
+                <ul class="col_mycourse_right_ul">
+                    <li>
+                        <img src="/static/images/nercel-images/mycourse_allcourse.png"/>
+                        <span>全部课程</span>
+                        <%doc><span>${courseCount}</span></%doc>
+                    </li>
+                </ul>
+            </div>
+            <!--第一门课程的内容布局-->
+                % if len(course_enrollment_pairs) > 0:
+                    <% share_settings = settings.FEATURES.get('SOCIAL_SHARING_SETTINGS', {}) %>
+                    % for dashboard_index, enrollment in enumerate(course_enrollments):
+                    <% show_courseware_link = (enrollment.course_id in show_courseware_links_for) %>
+                    <% cert_status = cert_statuses.get(enrollment.course_id) %>
+                    <% can_unenroll = (not cert_status) or cert_status.get('can_unenroll') %>
+                    <% credit_status = credit_statuses.get(enrollment.course_id) %>
+                    <% show_email_settings = (enrollment.course_id in show_email_settings_for) %>
+                    <% course_mode_info = all_course_modes.get(enrollment.course_id) %>
+                    <% show_refund_option = (enrollment.course_id in show_refund_option_for) %>
+                    <% is_paid_course = (enrollment.course_id in enrolled_courses_either_paid) %>
+                    <% is_course_blocked = (enrollment.course_id in block_courses) %>
+                    <% course_verification_status = verification_status_by_course.get(enrollment.course_id, {}) %>
+                    <% course_requirements = courses_requirements_not_met.get(enrollment.course_id) %>
+                    <% course_program_info = course_programs.get(unicode(enrollment.course_id)) %>
+                    <% course_overview=enrollment.course_overview%>
+                    <%
+                      cert_name_short = course_overview.cert_name_short
+                      if cert_name_short == "":
+                        cert_name_short = settings.CERT_NAME_SHORT
+
+                      cert_name_long = course_overview.cert_name_long
+                      if cert_name_long == "":
+                        cert_name_long = settings.CERT_NAME_LONG
+                      billing_email = settings.PAYMENT_SUPPORT_EMAIL
+                    %>
+                    % if settings.FEATURES.get('ENABLE_VERIFIED_CERTIFICATES'):
+                        <% course_verified_certs = CourseMode.enrollment_mode_display(enrollment.mode, verification_status.get('status')) %>
+                        <%
+                            mode_class = course_verified_certs.get('display_mode', '')
+                            if mode_class != '':
+                                mode_class = ' ' + mode_class ;
+                        %>
+                    % else:
+                        <% mode_class = '' %>
+                    % endif
+                        <div class="col_mycourse_right_child">
+                    <% course_target = reverse('courseware', args=[unicode(course_overview.id)]) %>
+                        <!--课程图片-->
+                    % if show_courseware_link:
+                        % if not is_course_blocked:
+                            <a href="${course_target}" data-course-key="${enrollment.course_id}" class="cover">
+                                <div class="col_mycourse_courseicon">
+                                    <img src="${course_overview.course_image_url}" class="course-image"
+                                         alt="${_('{course_number} {course_name} Home Page').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default) |h}"/>
+                                </div>
+                            </a>
+                        % else:
+                            <a class="fade-cover">
+                                <div class="col_mycourse_courseicon">
+                                    <img src="${course_overview.course_image_url}" class="course-image"
+                                         alt="${_('{course_number} {course_name} Cover Image').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default) |h}"/>
+                                </div>
+                            </a>
+                        % endif
+                    % else:
+                        <a class="cover">
+                            <div class="col_mycourse_courseicon">
+                                <img src="${course_overview.course_image_url}" class="course-image"
+                                     alt="${_('{course_number} {course_name} Cover Image').format(course_number=course_overview.number, course_name=course_overview.display_name_with_default) | h}"/>
+                            </div>
+                        </a>
+                    % endif
+                        <div class="col_mycourse_courseinfro">
+                            <p>${get_course_university_about_section(course_overview)}</p>
+                            <!--呈现课程的名称-->
+                            <h3>
+                                % if show_courseware_link:
+                                    % if not is_course_blocked:
+                                        <a href="${course_target}" data-course-key="${enrollment.course_id}">${course_overview.display_name_with_default}</a>
+                                    % else:
+                                        <a class="disable-look" data-course-key="${enrollment.course_id}">${course_overview.display_name_with_default}</a>
+                                    % endif
+                                % else:
+                                    <span>${course_overview.display_name_with_default}</span>
+                                % endif
+                            </h3>
+
+                            <p>${course_overview.display_number_with_default | h}</p>
+							<span>
+                                % if course_overview.has_ended():
+                                    ${_("Ended - {end_date}").format(end_date=course_overview.end_datetime_text("SHORT_DATE"))}
+                                % elif course_overview.has_started():
+                                    ${_("Started - {start_date}").format(start_date=course_overview.start_datetime_text("SHORT_DATE"))}
+                                % elif course_overview.start_date_is_still_default:
+                                    即将开始
+                                % else:
+                                    ${_("Starts - {start_date}").format(start_date=course_overview.start_datetime_text("SHORT_DATE"))}
+                                % endif
+                            </span>
+                        </div>
+                        <!--进度条的布局-->
+                        <div class="col_mycourse_courseprocess">
+                                % if show_courseware_link:
+                                    % if course_overview.has_ended():
+                                        % if not is_course_blocked:
+                                            <div class="col_mycourse_right_btn">
+                                            <a href="${course_target}" data-course-key="${enrollment.course_id}">查看存档课程</a>
+                                            </div>
+                                        % else:
+                                            <div class="col_mycourse_right_btn" data-course-key="${enrollment.course_id}">
+                                            <a>查看存档课程</a>
+                                            </div>
+                                        % endif
+                                    % else:
+                                        % if not is_course_blocked:
+                                            <div class="col_mycourse_right_btn">
+                                            <a href="${course_target}" data-course-key="${enrollment.course_id}">查看课程</a>
+                                            </div>
+                                        % else:
+                                            <div class="col_mycourse_right_btn" data-course-key="${enrollment.course_id}">
+                                            <a href="javascript:;">查看课程</a>
+                                            </div>
+                                        % endif
+                                    % endif
+                                %else:
+                                    <div class="col_mycourse_right_btn" style="background: #cccccc">
+                                    <a href="javascript:;">课程暂未开放</a>
+                                    </div>
+                                % endif
+                        </div>
+                        <div class="col_mycourse_right_close" id="col_mycourse_right_close1"
+                             onclick="set_unenroll_message('你确定要放弃选修吗?','${course_overview.id | h}');">
+                            <form method="post" data-remote="true" action="${reverse('change_enrollment')}"
+                                  id="${course_overview.id | h}">
+                                 <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+                                <input name="course_id" id="unenroll_course_id" type="hidden" value="${course_overview.id | h}"/>
+                                <input name="enrollment_action" type="hidden" value="unenroll"/>
+                            </form>
+                        </div>
+                    </div>
+                    % endfor
+                % else:
+                    <h3 style="text-align: center;height: 170px;line-height: 170px;">还没有课程，请点击下面添加课程按钮添加课程！</h3>
+                % endif
+            <a href="/courses">
+                <div class="col_mycourse_right_child" id="col_addcourse">
+                    <div class="col_addcourse_child">
+                        <div class="col_addcourse_child_1"></div>
+                        <p class="col_addcourse_txt">添加课程</p>
+                    </div>
+                </div>
+            </a>
+
+            <%doc><div id="col_page">
+                <div class="col_page_btn"><a href="javascript:void(0);">首页</a></div>
+                <div class="col_page_btn">
+                    <a href="javascript:void(0);">
+                        <</a>
+                </div>
+                <ul>
+                    <li class="col_page_li"><a href="javascript:void(0);">1</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">2</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">3</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">4</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">5</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">7</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">…</a></li>
+                    <li class="col_page_li"><a href="javascript:void(0);">12</a></li>
+
+                </ul>
+                <div class="col_page_btn"><a href="javascript:void(0);">></a></div>
+                <div class="col_page_btn"><a href="javascript:void(0);">尾页</a></div>
+            </div></%doc>
+        </div>
+    </div>
+</div>
+<!--版权信息-->
+<div class="col_copyright_bg max-width">
+    <div class="col_copyright">
+        <span> 版权所有 © 国家数字化学习工程技术研究中心</span>
+    </div>
+</div>
+<script type="text/javascript">
+    //下拉菜单的显示
+    $(function () {
+        $("#col_mycourse_sanjiao").click(
+                function (event) {
+                    stopEvent(event);
+                    $("#col_drop_down").show();
+                });
+        $(document).click(function(event){
+            stopEvent(event);
+            $("#col_drop_down").hide();
+        });
+    })
+
+    //下拉菜单的阴影
+    $(function () {
+        $("#col_drop_down li").hover(
+                function () {
+                    $(this).addClass("col_top_shadow");
+                },
+                function () {
+                    $(this).removeClass("col_top_shadow");
+                });
+    })
+    //最上面导航的阴影
+    $(function () {
+        $("#col_nav a").hover(
+                function () {
+                    $(this).addClass("selfColor");
+                },
+                function () {
+                    $(this).removeClass("selfColor");
+                });
+    })
+
+    //右侧导航的选中状态
+    $(function () {
+        $("#col_mycourse_right_top li").hover(
+                function () {
+                    $(this).addClass("col_right_shadow");
+
+                },
+                function () {
+                    $(this).removeClass("col_right_shadow");
+
+                });
+    })
+    //左侧导航的阴影
+    $(function () {
+        $("#col_mycourse_content_left li").hover(
+                function () {
+                    $(this).addClass("col_mycourse_shadow");
+                    $(this).find('.col_student_text').css('color', '#4faba0');
+                    $(this).find('.col_student_num').css('color', '#4faba0');
+                },
+                function () {
+                    $(this).removeClass("col_mycourse_shadow");
+                    $(this).find('.col_student_text').css('color', '#FFFFFF');
+                    $(this).find('.col_student_num').css('color', '#ffffff');
+                });
+    })
+    //关闭按钮的显示
+    $(function () {
+        $(".col_mycourse_right_child").hover(
+                function () {
+                    $(this).find('.col_mycourse_right_close').show();
+                },
+                function () {
+                    $(this).find('.col_mycourse_right_close').hide();
+                });
+    })
+    //页码的阴影
+    $(function () {
+        $("#col_page li").hover(
+                function () {
+                    $(this).addClass("col_page_shadow");
+
+                },
+                function () {
+                    $(this).removeClass("col_page_shadow");
+                });
+    })
+
+    //进度条的动画
+    $(function () {
+        $('#col_mycourse_circle1').each(function (index, el) {
+            var num = $(this).find('span').text() * 3.6;
+            if (num <= 180) {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(" + num + "deg)");
+            } else {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(180deg)");
+                $(this).find('.col_mycourse_left').css('transform', "rotate(" + (num - 180) + "deg)");
+            }
+            ;
+        });
+
+    });
+    $(function () {
+        $('#col_mycourse_circle2').each(function (index, el) {
+            var num = $(this).find('span').text() * 3.6;
+            if (num <= 180) {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(" + num + "deg)");
+            } else {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(180deg)");
+                $(this).find('.col_mycourse_left').css('transform', "rotate(" + (num - 180) + "deg)");
+            }
+            ;
+        });
+
+    });
+    $(function () {
+        $('#col_mycourse_circle3').each(function (index, el) {
+            var num = $(this).find('span').text() * 3.6;
+            if (num <= 180) {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(" + num + "deg)");
+            } else {
+                $(this).find('.col_mycourse_right').css('transform', "rotate(180deg)");
+                $(this).find('.col_mycourse_left').css('transform', "rotate(" + (num - 180) + "deg)");
+            }
+            ;
+        });
+
+    });
+    function set_unenroll_message(msg,courseId) {
+        var delCourse = confirm(msg);
+        var formEle = document.getElementById(courseId);
+        if (delCourse) {
+            $.ajax({
+                type:"POST",
+                data:$(formEle).serialize(),
+                url:"${reverse('change_enrollment')}",
+                success:function(){
+                    alert("删除成功");
+                    location.reload(true);
+                }
+            });
+        }
+    }
+    function unenroll(arg) {
+        $(arg).submit();
+    }
+    function stopEvent(ev) { //阻止冒泡事件
+		//取消事件冒泡
+		var e = arguments.callee.caller.arguments[0] || event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容
+		if (e && e.stopPropagation) {
+			// this code is for Mozilla and Opera
+			e.stopPropagation();
+		} else if (window.event) {
+			// this code is for IE
+			window.event.cancelBubble = true;
+		}
+	}
+</script>
+</body>
+
+</html>

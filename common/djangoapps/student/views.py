@@ -1,3 +1,4 @@
+#encoding=utf-8
 """
 Student Views
 """
@@ -118,7 +119,8 @@ from embargo import api as embargo_api
 
 import analytics
 from eventtracking import tracker
-
+#***************tmp***************************#
+from student.models import CourseEnrollment
 # Note that this lives in LMS, so this dependency should be refactored.
 from notification_prefs.views import enable_notifications
 
@@ -168,12 +170,13 @@ def index(request, extra_context=None, user=AnonymousUser()):
         courses = sort_by_start_date(courses)
     else:
         courses = sort_by_announcement(courses)
-
+    for course in courses:
+        course_id=course.id
+        enroll_account =CourseEnrollment.objects.enrollment_counts(course_id)
     context = {'courses': courses}
-
     context.update(extra_context)
     return render_to_response('index.html', context)
-
+    #return render_to_response('nercel-templates/col-index.html', context)
 
 def process_survey_link(survey_link, user):
     """
@@ -676,11 +679,11 @@ def dashboard(request):
         )
     else:
         redirect_message = ''
-
     context = {
         'enrollment_message': enrollment_message,
         'redirect_message': redirect_message,
         'course_enrollments': course_enrollments,
+        'course_enrollment_pairs':course_enrollments,
         'course_optouts': course_optouts,
         'message': message,
         'staff_access': staff_access,
@@ -708,8 +711,8 @@ def dashboard(request):
         'nav_hidden': True,
         'course_programs': course_programs,
     }
-
-    return render_to_response('dashboard.html', context)
+    return render_to_response('nercel-templates/col-mycourse.html', context)
+    #return render_to_response('dashboard.html', context)
 
 
 def _create_recent_enrollment_message(course_enrollments, course_modes):  # pylint: disable=invalid-name
@@ -2312,3 +2315,11 @@ def _get_course_programs(user, user_enrolled_courses):  # pylint: disable=invali
                 log.warning('Program structure is invalid, skipping display: %r', program)
 
     return programs_data
+#go to static page--school
+@ensure_csrf_cookie
+def go_to_school(request):
+    user = request.user
+    context = {
+        'user': user,
+    }
+    return render_to_response('nercel-templates/col-school.html', context)

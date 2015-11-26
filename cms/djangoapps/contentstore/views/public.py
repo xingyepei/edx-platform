@@ -1,3 +1,4 @@
+#encoding=utf-8
 """
 Public views
 """
@@ -13,7 +14,17 @@ from edxmako.shortcuts import render_to_response
 from external_auth.views import (ssl_login_shortcut, ssl_get_cert_from_request,
                                  redirect_with_get)
 from microsite_configuration import microsite
-
+############
+from util.json_request import JsonResponse
+import json
+from uuid import uuid4
+import urllib
+import urllib2
+import os
+import socket
+import time
+from poster.encode import multipart_encode
+from poster.streaminghttp import register_openers
 __all__ = ['signup', 'login_page', 'howitworks']
 
 
@@ -72,3 +83,71 @@ def howitworks(request):
         return redirect('/home/')
     else:
         return render_to_response('howitworks.html', {})
+def ajaxUploadVideo(request):
+    def handle_uploaded_file(f):
+        print (f.name)
+        file_name = ""
+        suffixName = ""
+        try:
+            path = "media/editor/"
+            if not os.path.exists(path):
+                os.makedirs(path)
+            name = "" + f.name
+            suffixName = name.split(".")[-1]
+            uuid = unicode(uuid4())
+            file_name = path + uuid + "." +suffixName
+            destination = open(file_name, 'wb+')
+            for chunk in f.chunks():
+                destination.write(chunk)
+            destination.close()
+        except Exception, e:
+            print e
+        return file_name
+    def handel_RestuploadFile(filepath):
+        try:
+            files=open(filepath,"rb")
+            register_openers()
+            url = "http://119.97.166.182:8090/TestMvc/restAdd"
+            datagen, headers = multipart_encode({"mp1": files})
+            request = urllib2.Request(url, datagen,headers)
+            res_data =urllib2.urlopen(request)
+            res = res_data.read().strip()
+            data = json.loads(res)
+            resurl = data["data"]["url"]
+            return resurl
+        except Exception,e:
+            print e
+    #Request中取出file文件
+    tmp=request.FILES['file']
+    if tmp is None or "":
+        return JsonResponse({
+            "success": False,
+            "msg": "文件为空",
+        })
+    #uploaFile类读取文件，写入本地临时文件
+    try:
+        fileName=handle_uploaded_file(tmp)
+    except Exception,e:
+        print e
+        return JsonResponse({
+            "success": False,
+            "msg": "文件写入本地失败:文件名称"+fileName,
+        })
+    #返回绝对路径
+    abFileName="/edx/app/edxapp/edx-platform/"+fileName
+    #Rest上传，并取回上传成功后的地址
+    try:
+        url=handel_RestuploadFile(abFileName)
+        if os.path.exists(abFileName):
+            os.remove(abFileName)
+    except Exception,e:
+        if os.path.exists(abFileName):
+           os.remove(abFileName)
+        return JsonResponse({
+            "success": False,
+            "msg": "文件Rest上传失败",
+        })
+    return JsonResponse({
+        "success": True,
+        "resurl": url,
+    })

@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-10-30 16:56+0000\n"
-"PO-Revision-Date: 2015-10-30 16:56:53.240310\n"
+"POT-Creation-Date: 2015-11-22 07:11+0000\n"
+"PO-Revision-Date: 2015-11-22 07:12:01.408139\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -12868,6 +12868,7 @@ msgstr ""
 "ηση ρяσι∂єηт, ѕυηт ιη ¢υłρα qυι σƒƒι¢ια ∂єѕєяυηт мσłłιт αηιм ι∂ єѕт łαвσяυ#"
 
 #: lms/templates/register-shib.html lms/templates/register.html
+#: lms/templates/nercel-templates/col-register.html
 msgid "The following errors occurred while processing your registration:"
 msgstr ""
 "Thé föllöwïng érrörs öççürréd whïlé pröçéssïng ýöür régïsträtïön: Ⱡ'σяєм "
@@ -13842,6 +13843,7 @@ msgstr ""
 #: lms/templates/ccx/enrollment.html
 #: lms/templates/courseware/course_about.html
 #: lms/templates/instructor/instructor_dashboard_2/membership.html
+#: lms/templates/nercel-templates/col-registerCourse.html
 msgid "Enroll"
 msgstr "Énröll Ⱡ'σяєм ιρѕυ#"
 
@@ -14305,6 +14307,7 @@ msgid "This content is graded"
 msgstr "Thïs çöntént ïs grädéd Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢#"
 
 #: lms/templates/courseware/course_about.html
+#: lms/templates/nercel-templates/col-registerCourse.html
 msgid "An error occurred. Please try again later."
 msgstr ""
 "Àn érrör öççürréd. Pléäsé trý ägäïn lätér. Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, "
@@ -15298,10 +15301,16 @@ msgstr ""
 "ηση ρяσι∂єηт, ѕυηт ιη ¢#"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+msgid "{category} Program Course"
+msgstr "{category} Prögräm Çöürsé Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт#"
+
+#: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "{course_number} {course_name} Home Page"
 msgstr "{course_number} {course_name} Hömé Pägé Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмє#"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "{course_number} {course_name} Cover Image"
 msgstr ""
 "{course_number} {course_name} Çövér Ìmägé Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт,#"
@@ -15311,10 +15320,12 @@ msgid "Enrolled as: "
 msgstr "Énrölléd äs:  Ⱡ'σяєм ιρѕυм ∂σłσя ѕι#"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Ended - {end_date}"
 msgstr "Éndéd - {end_date} Ⱡ'σяєм ιρѕυм ∂σłσя #"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Started - {start_date}"
 msgstr "Stärtéd - {start_date} Ⱡ'σяєм ιρѕυм ∂σłσя ѕι#"
 
@@ -15323,6 +15334,7 @@ msgid "Coming Soon"
 msgstr "Çömïng Söön Ⱡ'σяєм ιρѕυм ∂σłσя #"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Starts - {start_date}"
 msgstr "Stärts - {start_date} Ⱡ'σяєм ιρѕυм ∂σłσя ѕ#"
 
@@ -15651,6 +15663,25 @@ msgid ""
 msgstr ""
 "Thé {provider_name} äççöünt ýöü séléçtéd ïs älréädý lïnkéd tö änöthér "
 "{platform_name} äççöünt. Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тєтυя #"
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid "{category} Program: Interested in more courses in this subject?"
+msgstr ""
+"{category} Prögräm: Ìntéréstéd ïn möré çöürsés ïn thïs süßjéçt? Ⱡ'σяєм ιρѕυм"
+" ∂σłσя ѕιт αмєт, ¢σηѕє¢тєтυя α#"
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid ""
+"This course is 1 of {course_count} courses in the "
+"{link_start}{program_display_name}{link_end} {program_category}."
+msgstr ""
+"Thïs çöürsé ïs 1 öf {course_count} çöürsés ïn thé "
+"{link_start}{program_display_name}{link_end} {program_category}. Ⱡ'σяєм "
+"ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тєтυя α#"
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid "View {category} Details"
+msgstr "Vïéw {category} Détäïls Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αм#"
 
 #: lms/templates/debug/run_python_form.html
 msgid "Results:"
@@ -18743,6 +18774,13 @@ msgstr "ÖK Ⱡ'σя#"
 #: lms/templates/modal/accessible_confirm.html
 msgid "open"
 msgstr "öpén Ⱡ'σяєм ι#"
+
+#: lms/templates/nercel-templates/col-register.html
+msgid ""
+"We're sorry, {platform_name} enrollment is not available in your region"
+msgstr ""
+"Wé'ré sörrý, {platform_name} énröllmént ïs nöt äväïläßlé ïn ýöür régïön "
+"Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, ¢σηѕє¢тєтυя α#"
 
 #: lms/templates/open_ended_problems/combined_notifications.html
 msgid "{course_number} Combined Notifications"

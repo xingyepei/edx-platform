@@ -1,60 +1,55 @@
 ---
 metadata:
-    display_name: Numerical Input
+    display_name: 数值输入题
     markdown: |
-        In a numerical input problem, learners enter numbers or a specific and relatively simple mathematical expression. Learners enter the response in plain text, and the system then converts the text to a symbolic expression that learners can see below the response field.
+        在数值输入问题中, 学习者输入数字，或者一个明确的，相对简单的数学表述，学习者在纯文本中输入答案， 然后系统会将文本转化为一个符号式，学习者可以在答案区下面看到。
 
-        The system can handle several types of characters, including basic operators, fractions, exponents, and common constants such as "i". You can refer learners to "Entering Mathematical and Scientific Expressions" in the edX Guide for Students for more information.
+        系统可以处理多种类型的字符，包括基本运算符，分数，指数和常见常数，例如such as "i". 你可以让学习者参考edX指南中的“输入数学和科学表达式”获得更多信息.
 
-        When you add the problem, be sure to select Settings to specify a Display Name and other values that apply.
+        当你在添加问题时，一定要选择“设置”，明确指出一个显示名称和其他应用的值.
 
-        You can use the following example problems as models.
+        你可以用以下问题示例作为模型.
 
-        >>How many miles away from Earth is the sun? Use scientific notation to answer.<<
+        >>太阳距离地球多少英里？请用科学计数法作答.<<
 
         = 9.3*10^7 
         or= 9.296*10^7 
 
-        >>The square of what number is -100?<<
+        >>哪个数的平方是-100？<<
 
         = 10*i 
 
         [explanation]
-        The sun is 93,000,000, or 9.3*10^7, miles away from Earth.
-        -100 is the square of 10 times the imaginary number, i.
+        太阳距离地球 93,000,000, or 9.3*10^7英里.
+        -100 是10的虚数的平方.
         [explanation]
 data: |
     <problem>
 
-    <p>In a numerical input problem, learners enter numbers or a specific and
-    relatively simple mathematical expression. Learners enter the response in
-    plain text, and the system then converts the text to a symbolic expression
-    that learners can see below the response field.</p>
+    <p>在数值输入问题中, 学习者输入数字，或者一个明确的，相对简单的数学表述，学习者在纯文本中输入答案， 然后系统会将文本转化为一个符号式，学习者可以在答案区下面看到.</p>
 
-    <p>The system can handle several types of characters, including basic
-    operators, fractions, exponents, and common constants such as i. You can 
-    refer learners to 
+    <p>>系统可以处理多种类型的字符，包括基本运算符，分数，指数和常见常数，例如such as "i"
+     你可以让学习者 参考
     <a href="http://edx.readthedocs.org/projects/edx-guide-for-students/en/latest/SFD_mathformatting.html" target="_blank">
-    Entering Mathematical and Scientific Expressions</a> in the <i>edX Guide for
-    Students</i> for information about how to enter text into the field.</p>
-    <p>When you add the problem, be sure to select <strong>Settings</strong> 
-    to specify a <strong>Display Name</strong> and other values that apply.</p>
+    输入数学和科学表达式</a> 在  <i>edX 学生指南中</i> 获得有关如何在此区域输入文本的信息.</p>
+    <p>当你在添加一个问题是，一定要选择<strong>设置</strong>
+    明确指出 <strong>显示名称</strong>和其他应用的值.</p>
 
-    <p>You can use the following example problems as models.</p>
-      <p>How many miles away from Earth is the sun? Use scientific notation to answer.</p>
+    <p>你可以用以下问题示例作为模型.</p>
+      <p>太阳距离地球多少英里？请用科学计数法作答.</p>
       <numericalresponse answer="9.3*10^7">
         <formulaequationinput label="How many million miles are between Earth and the sun? Use scientific notation to answer." />
       </numericalresponse>
 
-      <p>The square of what number is -100?</p>
+      <p>哪个数的平方是-100?</p>
       <numericalresponse answer="10*i">
         <formulaequationinput label="The square of what number is -100?" />
       </numericalresponse>
     <solution>
       <div class="detailed-solution">
         <p>Explanation</p>
-        <p>The sun is 93,000,000, or 9.3*10^7, miles away from Earth.</p>
-        <p>-100 is the square of 10 times the imaginary number, i.</p>
+        <p>太阳距离地球 93,000,000, or 9.3*10^7英里.</p>
+        <p>-100 是10的虚数的平方.</p>
       </div>
     </solution>
     </problem>

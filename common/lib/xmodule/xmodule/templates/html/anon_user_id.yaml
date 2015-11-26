@@ -1,19 +1,16 @@
 ---
 metadata:
-    display_name: Anonymous User ID
+    display_name: 匿名用户ID
 data: |
-      <p>Your explanatory text here.</p>
+      <p>这里是你的解释文字.</p>
       <p><a href="https://YOUR_UNIVERSITY.qualtrics.com/SE/?SID=SV_###############&a=%%USER_ID%%" target="_blank">YOUR_LINK_TEXT</a></p>
-      
-      <!-- You can include %%USER_ID%% to include an anonymized user ID in your outside services so that you can relate them later.
-        
-        This example is a Qualtrics template:
-          - Replace the "###############" with your Survey ID.
-          - Also replace "YOUR_UNIVERSITY" with your qualtrics ID.
-          - Finally, replace "YOUR_LINK_TEXT" with your link text.
-          - If you wish to embed your survey into the courseware instead of opening a new tab, replace the above HTML with what is provided below.
-            
-            <p>Your explanatory text here.</p>
-            <iframe src="https://YOUR_UNIVERSITY.qualtrics.com/SE/?SID=SV_###############&a=%%USER_ID%%" height="1000" width="800" />
+      <!-- 你可以包括“用户ID”将一个匿名用户的ID计入到你的外部服务器上，这样你就可以在后面将他们联系起来.
+        这是一个Qualtrics的例子:
+          - 用你的搜索ID替换 "###############"
+          - 用你的qualtrics ID替换 "YOUR_UNIVERSITY".
+          - 最后，用你的链接文档替换“YOUR_LINK_TEXT”.
+          - 如果你想把你的调查嵌入到课件中，而不是新建一个标签，那么将下面显示的这部分内容替换上面的HTML内容.
+          <p>这里是你的解释文字。</p>
+          <iframe src="https://YOUR_UNIVERSITY.qualtrics.com/SE/?SID=SV_###############&a=%%USER_ID%%" height="1000" width="800" />
         
       -->

@@ -1,0 +1,290 @@
+<%namespace name='static' file='../static_content.html'/>
+<%!
+    from microsite_configuration import microsite
+    from django.utils.translation import ugettext as _
+    from django.core.urlresolvers import reverse
+    from courseware.courses import course_image_url, get_course_about_section
+    from django.conf import settings
+    from edxmako.shortcuts import marketing_link
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>${get_course_about_section(course, "title")}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/nercel-images/col_logo.png">
+    <link href="/static/css/nercel-css/col_head.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_index.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_copyright.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_register_course.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_mycourse.css" rel="stylesheet"/>
+    <script src="/static/js/nercel-js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#register_course").click(function (event) {
+                $.ajax({
+                    type: "POST",
+                    url: "${reverse('change_enrollment')}",
+                    data: $("#class_enroll_form").serialize(),
+                    complete: function (XMLHttpRequest, textStatus) {
+                        console.log(XMLHttpRequest.status);
+                        console.log(textStatus);
+                        if (XMLHttpRequest.status == 200) {
+                            if (XMLHttpRequest.responseText == "") {
+                                location.href = "${reverse('dashboard')}";
+                            }
+                            else {
+                                location.href = xhr.responseText;
+                            }
+                        } else if (XMLHttpRequest.status == 403) {
+                            location.href = "${reverse('register_user')}?course_id=${course.id | u}&enrollment_action=enroll";
+                        } else {
+                            alert("${_("An error occurred. Please try again later.")}");
+                        }
+                    }
+                });
+
+            });
+        })
+
+            <%doc>function registerCourse() {
+                </%doc><%doc>event.preventDefault();</%doc><%doc>
+                alert("************");
+                $.ajax({
+                    type: "POST",
+                    url: "${reverse('change_enrollment')}",
+                    data: $("#class_enroll_form").serialize(),
+                    success: function (data,textStatus) {
+                        console.log(data);
+                    },
+                    error:function(data,textStatus){
+                        alert(data);
+                        console.log(data);
+                        console.log(textStatus);
+                    }
+                });
+            }</%doc>
+        function stopDefault(e) {
+            //阻止默认浏览器动作(W3C)
+            if (e || e.preventDefault) {
+                e.preventDefault();
+            } else {
+                window.event.returnValue = false;
+            }
+            return false;
+            //IE中阻止函数器默认动作的方式
+        }
+    </script>
+</head>
+<body>
+<!--页头布局-->
+<div class="col_head_bg max-width">
+    <div class="col_head">
+        <h1><a href="/"><img src="/static/images/nercel-images/col_logo_cube.png" alt="logo" title="师大学堂"/></a></h1>
+
+        <div class="col_nav" id="col_nav">
+            <ul>
+                <li><a href="/" id="col_shouye">首页</a></li>
+                <li><a href="/go_to_school" id="col_xuexiao">学校</a></li>
+                <li><a href="javascript:void(0);" id="col_weike" style="background-color: #d6d4d4" ;>微课程</a></li>
+                <li><a href="http://122.204.161.231/mainView/navigate/newLogin.jsp" id="col_fenxi">学习分析</a></li>
+            </ul>
+        </div>
+        <%doc><div class="col_search">
+            <input type="text" id="col_search_input" placeholder="搜索你感兴趣的课程"/>
+            <a id="col_search_btn"></a>
+        </div></%doc>
+        <div class="col_mycourse_login">
+            % if user.is_authenticated():
+                <div class="col_mycourse_user">
+                    <%doc><img src="/static/images/nercel-images/mycourse_smalltouxiang.png"/></%doc>
+                    <a href="${reverse('dashboard')}" class="showName">${user.username}</a>
+
+                    <div id="col_mycourse_sanjiao"></div>
+                    <div id="col_drop_down">
+                        <ul>
+                            <li><a href="${reverse('learner_profile', kwargs={'username': user.username})}">我的课程</a>
+                            </li>
+                            <li><a href="${reverse('account_settings')}">账户设置</a></li>
+                            <li><a href="${reverse('logout')}">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            % else:
+                <div class="col_login">
+                    <!--登录前-->
+                    <ul class="pre_login">
+                        <li><a href="/register">登录</a></li>
+                        <li><a href="/register">注册</a></li>
+                    </ul>
+                </div>
+            % endif
+        </div>
+    </div>
+</div>
+<!--loginbox-->
+<div class="theme-popover-mask"></div>
+<div class="loginbox_bg">
+    <div class="col_loginbox" id="loginbox">
+        <div class="col_login_mainbody">
+            <div class="col_login_head"></div>
+            <form role="form" id="login-form" method="post" data-remote="true" novalidate class="login">
+                <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+
+                <div class="username">
+                    <input id="email" type="email" name="email" placeholder="登录邮箱">
+                </div>
+                <div class="password">
+                    <input id="password" type="password" name="password" placeholder="密码">
+                </div>
+                <div class="others">
+                    <input class="remember_btn" id="remember-yes" type="checkbox" name="remember" checked="checked">
+                    <label for="remember-yes">记住我</label>
+                    <a class="fr" href="/register" class="g_modal_regbtn" data-click="onClick">现在注册</a>
+                    <a class="fr" href="javascript:;" target="_blank" data-click="onClick">忘记密码？</a>
+                </div>
+                <button class="button" name="submit" type="button" id="submit" onclick="submitForm(event);">登录</button>
+            </form>
+            <div class="close_btn" id="login_close"></div>
+        </div>
+    </div>
+</div>
+<!--课程简介-->
+<div class="col_weike_banner max-width">
+    <div class="col_weike_img"></div>
+</div>
+<div class="col_course_bg max-width">
+    <div class="col_course_details">
+        <div class="col_course_information">
+            <div class="col_left fl" id="fengmian">
+                <img src="${course_image_url(course)}">
+            </div>
+            <div class="col_middle fl">
+                <span>${get_course_about_section(course, "title")}</span>
+                <ul class="col_middle_list">
+                    <li>
+                        <p><img src="/static/images/nercel-images/course_code.png"/></p>
+
+                        <p class="middle_details_title">课程代码</p>
+
+                        <p id="course_code">${course.display_number_with_default | h}</p>
+                    </li>
+                    <li>
+                        <p><img src="/static/images/nercel-images/course_time.png"/></p>
+
+                        <p class="middle_details_title">课程时长</p>
+
+                        <p id="course_time">45分钟</p>
+                    </li>
+                    <li>
+
+                        <p><img src="/static/images/nercel-images/course_opentime.png"/></p>
+
+                        <p class="middle_details_title">开课时间</p>
+
+                        <p id="course_opentime">${course.start_datetime_text()}
+                            -${get_course_about_section(course, "end_date")}</p>
+
+                    </li>
+                    <li>
+
+                        <p><img src="/static/images/nercel-images/course_population.png"/></p>
+
+                        <p class="middle_details_title">报名人数</p>
+
+                        <p>127</p>
+
+                    </li>
+                    <li>
+
+                        <p><img src="/static/images/nercel-images/course_population.png"/></p>
+
+                        <p class="middle_details_title">距开课天数</p>
+
+                        <p>31</p>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="col_right fr">
+                <%doc><div id="teacher_img"></div></%doc>
+                <%doc><ul class="teacher_information">
+                    <li id="teacher_name">郑莉老师</li>
+                    <li id="teacher_school">华师一附中</li>
+                    <li id="teacher_position">数学特级教师</li>
+                </ul></%doc>
+                %if user.is_authenticated() and registered:
+                    %if show_courseware_link:
+                        <a href="${course_target}" class="join_course">
+                            查看课程
+                        </a>
+                    %endif
+
+                %elif is_course_full:
+                    <a class="join_course" href="javascript:;">
+                        课程已满
+                    </a>
+                % elif invitation_only and not can_enroll:
+                    <a href="javascript:;">仅受邀学生注册</a>
+                % elif not is_shib_course and not can_enroll:
+                    <a class="register disabled">注册已关闭</a>
+                %else:
+                    <a href="javascript:;" id="register_course" class="join_course">
+                        加入课程
+                    </a>
+
+                    <div id="register_error"></div>
+                %endif
+            </div>
+        </div>
+        %if active_reg_button or is_shib_course:
+            <div style="display: none;">
+                <form id="class_enroll_form" method="post" data-remote="true" action="${reverse('change_enrollment')}">
+                    <fieldset class="enroll_fieldset">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+                        <legend class="sr">${_("Enroll")}</legend>
+                        <input name="course_id" type="hidden" value="${course.id | h}">
+                        <input name="enrollment_action" type="hidden" value="enroll">
+                    </fieldset>
+                </form>
+            </div>
+        %endif
+        <!--右下侧简介-->
+        <div class="col_course_QA">
+            ${get_course_about_section(course, "overview")}
+        </div>
+        <!--相关课程-->
+    </div>
+</div>
+<!--版权信息-->
+<div class="col_copyright_bg max-width">
+    <div class="col_copyright">
+        <span> 版权所有 © 国家数字化学习工程技术研究中心</span>
+    </div>
+</div>
+<script>
+    var grayEle = "";
+    //页面加载完成之后执行，鼠标移动变色
+    $(function () {
+        $("#col_nav a").hover(
+                function () {
+                    $(this).addClass("selfColor");
+                },
+                function () {
+                    $(this).removeClass("selfColor");
+                });
+    })
+    // 弹出登录框，使整个页面灰掉
+    $("#login").click(function () {
+        $('.theme-popover-mask').show();
+        $('.theme-popover-mask').height($(document).height());
+        $(".loginbox_bg").slideDown(500);
+    });
+    //关闭登录框
+    $("#login_close").click(function () {
+        $('.theme-popover-mask').hide();
+        $(".loginbox_bg").slideUp(500);
+    });
+</script>
+</body>
+</html>

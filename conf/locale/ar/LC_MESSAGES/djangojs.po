@@ -11,7 +11,8 @@
 # Abdullatif El Ali <abdullatifalali@gmail.com>, 2014
 # Ahmad AbdArrahman <mygooglizer@gmail.com>, 2013
 # Ahmad AbdArrahman <mygooglizer@gmail.com>, 2013
-# Ahmed Jazzar <ajazzar@edraak.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
 # ayshibly <ayshibly@gmail.com>, 2014
 # Belal A. Nwiran <bnwiran@gmail.com>, 2015
 # br1ng <ibnalawam@gmail.com>, 2014
@@ -26,6 +27,7 @@
 # Nabeel El-Dughailib <nabeel@qordoba.com>, 2014-2015
 # Najwan Al Rousan <najwanrousan@gmail.com>, 2013
 # Najwan Al Rousan <najwanrousan@gmail.com>, 2013
+# omarithawi <oithawi@qrf.org>, 2015
 # Saramami.mami <saramami.mami@yahoo.com>, 2014
 # SiddigSami <siddigsami@live.com>, 2014-2015
 # Tariq Hamid <ou63@outlook.com>, 2015
@@ -41,7 +43,7 @@
 # Abdallah Nassif <abdoosh00@gmail.com>, 2015
 # Abdelghani Gadiri <wh.gnu.linux@gmail.com>, 2014
 # Ahmad AbdArrahman <mygooglizer@gmail.com>, 2013
-# Ahmed Jazzar <ajazzar@edraak.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
 # Mahmoud Elkhateeb <eng.elkhteeb@gmail.com>, 2013
 # may <may@qordoba.com>, 2013
 # may <may@qordoba.com>, 2014
@@ -58,8 +60,11 @@
 # Abdelghani Gadiri <wh.gnu.linux@gmail.com>, 2014
 # qrfahasan <ahasan@qrf.org>, 2014
 # Ahmad <reload_cobra2@yahoo.com>, 2015
-# Ahmed Jazzar <ajazzar@edraak.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
 # mohammad hamdi <babrica@hotmail.com>, 2014
+# Emad Ahmad Alghamdi <eaalghamdi@kau.edu.sa>, 2015
+# Khaled Abdel wahab <engkhaledabdelwahab@gmail.com>, 2015
 # may <may@qordoba.com>, 2014
 # Nabeel El-Dughailib <nabeel@qordoba.com>, 2014-2015
 # omarithawi <oithawi@qrf.org>, 2015
@@ -71,7 +76,7 @@
 # 
 # Translators:
 # Abdallah Nassif <abdoosh00@gmail.com>, 2014
-# Ahmed Jazzar <ajazzar@edraak.org>, 2015
+# Ahmed Jazzar <ajazzar@qrf.org>, 2015
 # may <may@qordoba.com>, 2014
 # Mohamed Ibrahim <root.php@hotmail.com>, 2015
 # wd3bbas <mohed.alabbas@gmail.com>, 2014
@@ -82,9 +87,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: edx-platform\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-10-30 14:32+0000\n"
-"PO-Revision-Date: 2015-10-29 17:55+0000\n"
-"Last-Translator: Sarina Canelake <sarina@edx.org>\n"
+"POT-Creation-Date: 2015-11-18 21:01+0000\n"
+"PO-Revision-Date: 2015-11-09 12:23+0000\n"
+"Last-Translator: Ahmed Jazzar <ajazzar@qrf.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/open-edx/edx-platform/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -595,9 +600,15 @@ msgstr "العنوان الرئيسي 3"
 msgid "Add to Dictionary"
 msgstr "أضف إلى القاموس"
 
+#. #-#-#-#-#  djangojs-partial.po (edx-platform)  #-#-#-#-#
 #. Translators: this is a message from the raw HTML editor displayed in the
 #. browser when a user needs to edit HTML
 #: common/lib/xmodule/xmodule/js/src/html/edit.js
+#: cms/templates/js/add-xblock-component-menu-problem.underscore
+#: test_root/staticfiles/cms/coffee/fixtures/add-xblock-component-menu-problem.9c0639087466.underscore
+#: test_root/staticfiles/cms/coffee/fixtures/add-xblock-component-menu-problem.underscore
+#: test_root/staticfiles/cms/templates/add-xblock-component-menu-problem.9c0639087466.underscore
+#: test_root/staticfiles/cms/templates/add-xblock-component-menu-problem.underscore
 msgid "Advanced"
 msgstr "إعدادات متقدّمة"
 
@@ -1677,7 +1688,7 @@ msgstr "النمط"
 #. browser when a user needs to edit HTML
 #: common/lib/xmodule/xmodule/js/src/html/edit.js
 msgid "Subscript"
-msgstr "نص/رمز/رقم سفلي"
+msgstr "رمز سفلي"
 
 #. Translators: this is a message from the raw HTML editor displayed in the
 #. browser when a user needs to edit HTML
@@ -1943,6 +1954,7 @@ msgid "Play"
 msgstr "تشغيل"
 
 #: common/lib/xmodule/xmodule/js/src/video/00_i18n.js
+#: common/lib/xmodule/xmodule/js/src/video/09_play_pause_control.js
 msgid "Pause"
 msgstr "إيقاف"
 
@@ -2026,12 +2038,16 @@ msgid "Try using a different browser, such as Google Chrome."
 msgstr "يُرجى محاولة استخدام متصفّح آخر، مثل غوغل كروم."
 
 #: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
-msgid "HD off"
-msgstr "تقنية الدقة العالية غير مفعّلة حاليًّا "
+msgid "High Definition"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
-msgid "HD on"
-msgstr "تقنية الدقة العالية مفعّلة حاليًّا "
+msgid "off"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
+msgid "on"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/06_video_progress_slider.js
 msgid "Video position"
@@ -2073,15 +2089,15 @@ msgstr[5] "%(value)s ثوانٍ"
 
 #: common/lib/xmodule/xmodule/js/src/video/07_video_volume_control.js
 msgid ""
-"Click on this button to mute or unmute this video or press UP or DOWN "
-"buttons to increase or decrease volume level."
+"Volume: Click on this button to mute or unmute this video or press UP or "
 msgstr ""
-"يُرجى النقر على هذا الزر من أجل كتم أو إلغاء كتم صوت هذا الفيديو أو الضغط "
-"على الزر \"أعلى\" أو \"أسفل\" لرفع مستوى الصوت أو خفضه."
 
 #: common/lib/xmodule/xmodule/js/src/video/08_video_speed_control.js
-msgid "Speeds"
-msgstr "السرعات "
+msgid ""
+"Speed: Press UP to enter the speed menu then use the UP and DOWN arrow keys "
+"to navigate the different speeds, then press ENTER to change to the selected"
+" speed."
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/09_play_skip_control.js
 msgid "Skip"
@@ -2096,8 +2112,19 @@ msgid "Do not show again"
 msgstr "يُرجى عدم إظهار هذا مرّة أخرى."
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
-msgid "Turn off captions"
-msgstr "إيقاف العناوين الفرعية"
+msgid "Turn off transcript"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid ""
+"Language: Press the UP arrow key to enter the language menu, then use UP and"
+" DOWN arrow keys to navigate language options. Press ENTER to change to the "
+"selected language."
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid "Open language menu"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
 msgid ""
@@ -2112,8 +2139,12 @@ msgid "Caption will be displayed when "
 msgstr "سيجري عرض العنوان الفرعي عندما"
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
-msgid "Turn on captions"
-msgstr "تشغيل العناوين الفرعية"
+msgid "Turn on transcripts"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid "Turn off transcripts"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/public/js/library_content_edit.js
 msgid "Updating with latest library content"
@@ -3805,7 +3836,8 @@ msgstr "\"عنوان اختياري\""
 
 #: lms/static/js/Markdown.Editor.js
 msgid "Insert Image (upload file or type url)"
-msgstr "إدخال الصورة (تحميل ملف أو طباعة الرابط url) "
+msgstr ""
+"حمل الصورة (سواء برفعها من جهازك أو بإدخال الرابط الإلكتروني الخاص بها)"
 
 #: lms/static/js/Markdown.Editor.js
 msgid "Markdown Editing Help"
@@ -3949,11 +3981,23 @@ msgid "Save changes"
 msgstr "حفظ التغييرات"
 
 #: lms/static/js/ccx/schedule.js
+msgid "Please enter valid start date and time."
+msgstr ""
+
+#: lms/static/js/ccx/schedule.js
+msgid "Due date cannot be before start date."
+msgstr ""
+
+#: lms/static/js/ccx/schedule.js
 msgid "Enter Due Date and Time"
 msgstr ""
 
 #: lms/static/js/ccx/schedule.js
 msgid "Enter Start Date and Time"
+msgstr ""
+
+#: lms/static/js/certificates/models/certificate_exception.js
+msgid "Student username/email is required."
 msgstr ""
 
 #: lms/static/js/courseware/credit_progress.js
@@ -4226,6 +4270,14 @@ msgstr "هل تريد البدء بإعداد الشهادات لجميع الط
 msgid "Error while generating certificates. Please try again."
 msgstr "نأسف لحدوث خطأ أثناء إعداد الشهادات. يُرجى المحاولة مرّة أخرى."
 
+#: lms/static/js/instructor_dashboard/certificates.js
+msgid "Start regenerating certificates for students in this course?"
+msgstr ""
+
+#: lms/static/js/instructor_dashboard/certificates.js
+msgid "Error while regenerating certificates. Please try again."
+msgstr ""
+
 #: lms/static/js/instructor_dashboard/ecommerce.js
 msgid ""
 "There was a problem creating the report. Select \"Create Executive Summary\""
@@ -4304,6 +4356,10 @@ msgstr "جاري إضافة المساق المختار إلى عربة مشتر
 #: lms/static/js/student_account/views/FinishAuthView.js
 msgid "Loading your courses"
 msgstr "جاري تحميل مساقاتك"
+
+#: lms/static/js/student_account/views/LoginView.js
+msgid "Please check your internet connection and try again."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Basic Account Information (required)"
@@ -4412,8 +4468,10 @@ msgid "Connect your {accountName} account"
 msgstr "اربط حسابك {accountName}"
 
 #: lms/static/js/student_account/views/account_settings_fields.js
-msgid "We've sent a confirmation message to {new_email_address}. "
-msgstr "لقد أرسلنا رسالة تأكيد إلى {new_email_address}."
+msgid ""
+"We've sent a confirmation message to {new_email_address}. Click the link in "
+"the message to update your email address."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_fields.js
 msgid ""
@@ -4423,8 +4481,10 @@ msgstr ""
 "على اللغة."
 
 #: lms/static/js/student_account/views/account_settings_fields.js
-msgid "We've sent a message to {email_address}. "
-msgstr "لقد أرسلنا رسالة إلى {email_address}."
+msgid ""
+"We've sent a message to {email_address}. Click the link in the message to "
+"reset your password."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_fields.js
 msgid "Unlink"
@@ -4555,6 +4615,14 @@ msgstr "الدفع بواسطة PayPal"
 #: lms/static/js/verify_student/views/make_payment_step_view.js
 msgid "Checkout with {processor}"
 msgstr "الدفع بواسطة {processor}"
+
+#: lms/static/js/verify_student/views/make_payment_step_view.js
+msgid "All payment options are currently unavailable."
+msgstr ""
+
+#: lms/static/js/verify_student/views/make_payment_step_view.js
+msgid "Try the transaction again in a few minutes."
+msgstr ""
 
 #: lms/static/js/verify_student/views/make_payment_step_view.js
 msgid "An error has occurred. Please try again."
@@ -4790,10 +4858,6 @@ msgstr "اسم الشهادة مطلوب."
 #: cms/static/js/certificates/models/certificate.js
 msgid "Signatory field(s) has invalid data."
 msgstr "يحتوي حقل (حقول) الموقّع على بيانات غير صالحة."
-
-#: cms/static/js/certificates/models/signatory.js
-msgid "Signatory title should span over maximum of 2 lines."
-msgstr "لا يجب أن يشغل لقب الموقّع أكثر من سطرَين."
 
 #: cms/static/js/certificates/views/certificate_details.js
 msgid "Edit this certificate?"
@@ -5876,7 +5940,7 @@ msgstr "صيغة خاطئة لرابط url."
 #: test_root/staticfiles/cms/templates/active-video-upload-list.a3c73865dbb7.underscore
 #: test_root/staticfiles/cms/templates/active-video-upload-list.underscore
 msgid "Drag and drop or click here to upload video files."
-msgstr ""
+msgstr "استخدم خاصية السحب والإفلات أو اضغط هنا لتحميل ملفّات الفيديو ."
 
 #: cms/templates/js/active-video-upload.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/active-video-upload.7145c07dbb94.underscore
@@ -5884,7 +5948,7 @@ msgstr ""
 #: test_root/staticfiles/cms/templates/active-video-upload.7145c07dbb94.underscore
 #: test_root/staticfiles/cms/templates/active-video-upload.underscore
 msgid "status"
-msgstr ""
+msgstr "الحالة"
 
 #: cms/templates/js/add-xblock-component-menu-problem.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/add-xblock-component-menu-problem.9c0639087466.underscore
@@ -5892,7 +5956,7 @@ msgstr ""
 #: test_root/staticfiles/cms/templates/add-xblock-component-menu-problem.9c0639087466.underscore
 #: test_root/staticfiles/cms/templates/add-xblock-component-menu-problem.underscore
 msgid "Common Problem Types"
-msgstr ""
+msgstr "المسائل الشائعة"
 
 #: cms/templates/js/add-xblock-component.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/add-xblock-component.d4aecd3a64dd.underscore
@@ -5900,7 +5964,7 @@ msgstr ""
 #: test_root/staticfiles/cms/templates/add-xblock-component.d4aecd3a64dd.underscore
 #: test_root/staticfiles/cms/templates/add-xblock-component.underscore
 msgid "Add New Component"
-msgstr ""
+msgstr "إضافة مكوِّن جديد"
 
 #: cms/templates/js/advanced_entry.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/advanced_entry.660f21a633f7.underscore
@@ -6405,15 +6469,6 @@ msgid "Due:"
 msgstr ""
 
 #: cms/templates/js/course-outline.underscore
-#: lms/templates/ccx/schedule.underscore
-#: test_root/staticfiles/cms/templates/ccx/schedule.50fbfd435a6f.underscore
-#: test_root/staticfiles/cms/templates/ccx/schedule.underscore
-#: test_root/staticfiles/lms/templates/ccx/schedule.50fbfd435a6f.underscore
-#: test_root/staticfiles/lms/templates/ccx/schedule.underscore
-msgid "Due Date"
-msgstr "تاريخ الاستحقاق"
-
-#: cms/templates/js/course-outline.underscore
 #: cms/templates/js/xblock-outline.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/course-outline.05246d1f7f2d.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/course-outline.underscore
@@ -6526,7 +6581,7 @@ msgstr ""
 #: test_root/staticfiles/cms/templates/course_info_handouts.03885b977531.underscore
 #: test_root/staticfiles/cms/templates/course_info_handouts.underscore
 msgid "Course Handouts"
-msgstr ""
+msgstr "نشرات المساق"
 
 #: cms/templates/js/course_info_handouts.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/course_info_handouts.03885b977531.underscore
@@ -8141,6 +8196,17 @@ msgid "endorsed %(time_ago)s"
 msgstr "مصادقة عليها %(time_ago)s"
 
 #: common/static/common/templates/discussion/thread-response.underscore
+#, python-format
+msgid "Show Comment (%(num_comments)s)"
+msgid_plural "Show Comments (%(num_comments)s)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: common/static/common/templates/discussion/thread-response.underscore
 msgid "fmts"
 msgstr ""
 
@@ -8252,6 +8318,7 @@ msgid "username or email"
 msgstr "اسم المستخدم أو البريد الإلكتروني:"
 
 #: lms/djangoapps/support/static/support/templates/certificates_results.underscore
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
 msgid "No results"
 msgstr "لا نتائج"
 
@@ -8416,6 +8483,14 @@ msgstr "الوحدة"
 #: test_root/staticfiles/lms/templates/ccx/schedule.underscore
 msgid "Start Date"
 msgstr "تاريخ البدء"
+
+#: lms/templates/ccx/schedule.underscore
+#: test_root/staticfiles/cms/templates/ccx/schedule.50fbfd435a6f.underscore
+#: test_root/staticfiles/cms/templates/ccx/schedule.underscore
+#: test_root/staticfiles/lms/templates/ccx/schedule.50fbfd435a6f.underscore
+#: test_root/staticfiles/lms/templates/ccx/schedule.underscore
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
 
 #: lms/templates/ccx/schedule.underscore
 #: test_root/staticfiles/cms/templates/ccx/schedule.50fbfd435a6f.underscore
@@ -8760,6 +8835,52 @@ msgstr "يُرجى النقر للتعديل"
 #: test_root/staticfiles/lms/templates/fields/field_text.underscore
 msgid "title"
 msgstr "العنوان"
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list-editor.underscore
+msgid ""
+"Specify either Student's username or email for whom to create certificate "
+"exception"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list-editor.underscore
+msgid "Enter Notes associated with this certificate exception"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "User ID"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "User Email"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Date Exception Granted"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Notes"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate a Certificate for all"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "New"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "additions to the Exception list"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate a Certificate for all users on the Exception list"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate Exception Certificates"
+msgstr ""
 
 #: lms/templates/instructor/instructor_dashboard_2/cohort-discussions-course-wide.underscore
 #: lms/templates/instructor/instructor_dashboard_2/cohorts.underscore
@@ -10715,7 +10836,7 @@ msgstr ""
 
 #: cms/templates/js/certificate-details.underscore
 msgid "Course Number"
-msgstr ""
+msgstr "رقم المساق "
 
 #: cms/templates/js/certificate-details.underscore
 msgid "Course Number Override"
@@ -10738,12 +10859,20 @@ msgid "(Add signatories for a certificate)"
 msgstr ""
 
 #: cms/templates/js/course-outline.underscore
+msgid "Ungraded"
+msgstr ""
+
+#: cms/templates/js/course-outline.underscore
+msgid "Practice proctored Exam"
+msgstr ""
+
+#: cms/templates/js/course-outline.underscore
 msgid "Proctored Exam"
 msgstr "امتحان مراقَب"
 
 #: cms/templates/js/course-outline.underscore
-msgid "Timed and Proctored Exam"
-msgstr "امتحان مراقَب ومحدَّد التوقيت"
+msgid "Timed Exam"
+msgstr "امتحان محدَّد التوقيت"
 
 #: cms/templates/js/list.underscore
 #, python-format
@@ -10771,12 +10900,40 @@ msgid "Image must be in PNG format"
 msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "Timed Exam"
-msgstr "امتحان محدَّد التوقيت"
+msgid "Additional Options:"
+msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is timed"
-msgstr "هذا الامتحان له وقت محدَّد"
+msgid "Timed"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Use a timed exam to limit the time learners can spend on problems in this "
+"subsection. Learners must submit answers before the time expires. You can "
+"allow additional time on per learner basis through the Instructor Dashboard."
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid "Proctored"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Proctored exams are timed, and software records video of each learner taking"
+" the exam. These videos are then reviewed by a third party."
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid "Practice Proctored"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Use a practice proctored exam to introduce learners to the proctoring tools "
+"and processes. Results of the practice exam do not count towards the "
+"learner's grade."
+msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
 msgid "Time Allotted (HH:MM):"
@@ -10785,37 +10942,10 @@ msgstr "الوقت المخصَّص (HH:MM): "
 #: cms/templates/js/timed-examination-preference-editor.underscore
 #, python-format
 msgid ""
-"Students see warnings when 20% and 5% of the allotted time remains. In "
-"certain cases, students can be granted allowances that give them extra time "
-"to complete the exam."
+"Learners see warnings when 20% and 5% of the allotted time remains. You can "
+"grant learners extra time to complete the exam through the Instructor "
+"Dashboard."
 msgstr ""
-"يرى الطلّاب تحذيرًا عندما يتبقى 20% و 5% من الوقت المقرر. في بعض الحالات، "
-"يمكن للطلاب أن يحصلوا على وقت إضافي  لمساعدتهم في إنهاء الاختبار."
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is for practice only"
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid ""
-"Learners can experience the proctoring software setup process and try some "
-"example problems. Make sure this practice exam is set up as an ungraded "
-"exam."
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is proctored"
-msgstr "هذا الامتحان مراقَب"
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid ""
-"Students can choose to take this exam with or without online proctoring, but"
-" only students who choose the proctored option are eligible for credit. "
-"Proctored exams must also be timed exams."
-msgstr ""
-"يمكن للطلّاب أن يختاروا الخضوع لهذا الامتحان مع أو من دون مراقبة عبر "
-"الإنترنت، لكنّ فقط الطلّاب الذين يختارون المراقبة يتأهّلون للنجاح في المادة."
-" ويُشترط في الامتحانات المراقَبة أيضًا أن تكون محدَّدة التوقيت."
 
 #: cms/templates/js/verification-access-editor.underscore
 msgid "Verification Checkpoint"

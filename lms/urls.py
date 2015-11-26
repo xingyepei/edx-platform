@@ -774,3 +774,7 @@ urlpatterns += (
 urlpatterns += (
     url(r'^api/', include('edx_proctoring.urls')),
 )
+#LMS school page url
+urlpatterns += (
+    url(r'^go_to_school$', 'student.views.go_to_school'),
+)

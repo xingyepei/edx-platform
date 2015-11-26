@@ -1,0 +1,323 @@
+<%!
+    from django.utils.translation import ugettext as _
+    from django.core.urlresolvers import reverse
+    from django.utils import html
+    from django_countries import countries
+    from django.utils.translation import ugettext as _
+    from microsite_configuration import microsite
+    from student.models import UserProfile
+    from datetime import date
+    import third_party_auth
+    from third_party_auth import pipeline, provider
+    import calendar
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>注册页面</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/nercel-images/col_logo_cube.png">
+     <link href="/static/css/nercel-css/col_index.css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_head.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/css/nercel-css/col_copyright.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/nercel-css/col_register.css"/>
+    <script type="text/javascript" src="/static/js/nercel-js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--页头布局-->
+<div class="col_head_bg max-width">
+    <div class="col_head">
+        <h1><a href="/"><img src="/static/images/nercel-images/col_logo.png" alt="logo" title="师大学堂"/></a></h1>
+
+        <div class="col_nav" id="col_nav">
+            <ul>
+                <li><a href="/" id="col_shouye">首页</a></li>
+                <li><a href="/go_to_school" id="col_xuexiao">学校</a></li>
+                <li><a href="javascript:void(0);" id="col_weike">微课程</a></li>
+                <li><a href="http://122.204.161.231/mainView/navigate/newLogin.jsp" id="col_fenxi">学习分析</a></li>
+            </ul>
+        </div>
+       <%doc> <div class="col_search">
+            <input type="text" id="col_search_input" placeholder="搜索你感兴趣的课程"/>
+            <a id="col_search_btn"></a>
+        </div></%doc>
+        <div class="col_login">
+            <!--登录前-->
+            <ul class="pre_login">
+                <li><a href="javascript:;" id="login" onclick="showLoginBox();">登录</a></li>
+                <li><a href="col-register.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--loginbox-->
+<div class="theme-popover-mask"></div>
+<div class="loginbox_bg">
+    <div class="col_loginbox" id="loginbox">
+        <div class="col_login_mainbody">
+            <div class="col_login_head"></div>
+            <form role="form" id="login-form" method="post" data-remote="true" novalidate class="login">
+                <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+                <div class="username">
+                    <input id="email" type="email" name="email" placeholder="登录邮箱">
+                </div>
+                <div class="password">
+                    <input id="password" type="password" name="password" placeholder="密码">
+                </div>
+                <div class="others">
+                    <input class="remember_btn" id="remember-yes" type="checkbox" name="remember" checked="checked">
+                    <label for="remember-yes">记住我</label>
+                    <a class="fr" href="/register" class="g_modal_regbtn" data-click="onClick">现在注册</a>
+                    <a class="fr" href="javascript:;" target="_blank" data-click="onClick">忘记密码？</a>
+                </div>
+                <button class="button" id="loginBtn" onclick="loginForm(event);">登录</button>
+            </form>
+            <div class="close_btn" id="login_close"></div>
+        </div>
+    </div>
+</div>
+<div class="col_register_head_bg" id="col_head_bg">
+    <div class="col_register_head" id="col_head">
+        <img src="/static/images/nercel-images/col_register_bg.png"/>
+    </div>
+</div>
+<div class="col-register">
+    <div class="col_register_content clear" id="col_content">
+
+        <div class="col_register_left" id="col_left">
+            <p class="col_register_left_p1" id="col_register_left_p1">请将以下字段补充完整以完成账户注册。</p>
+
+            <p class="col_register_left_p2" id="col_register_left_p2">必须的字段已经被<b>粗体</b>和星号(*)所标记。</p>
+            <!-- status messages -->
+            <div role="alert" class="status message">
+                <h3 class="message-title">${_("We're sorry, {platform_name} enrollment is not available in your region").format(platform_name=platform_name)}</h3>
+            </div>
+
+            <div role="alert" class="status message submission-error" tabindex="-1">
+                <h3 class="message-title">${_("The following errors occurred while processing your registration:")} </h3>
+                <ul class="message-copy"></ul>
+            </div>
+
+            <form class="col_left_register" role="form" id="register-form" method="post" data-remote="true"
+                  action="/create_account" novalidate>
+                <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
+
+                <label for="email" class="col_email" id="col_email">电子邮件*</label><br/>
+                <input class="col_email_text" id="email" type="email" name="email"
+                       placeholder="例：username@domain.com"/></br>
+                <label for="name" class="col_name" id="col_name">全名*</label><br/>
+                <input class="col_name_text" id="name" type="text" name="name" placeholder="例：Jane Doe"/>
+
+                <p class="col_note">用于你将来获得的各种证书</p>
+                <label for="username" class="col_publicname" id="col_publicname">公开用户名</label><br/>
+                <input class="col_publicname_text" id="username" type="text" name="username" placeholder="例：JaneDoe"/>
+
+                <p class="col_note">将会在您参加的任何讨论或论坛上显示（之后将无法更改）（以后不能更改）</p>
+                <label for="password" class="col_password" id="col_password">密码*</label><br/>
+                <input class="col_password_text" id="password" type="password" name="password"/>
+                <ul class="col_secect clear" id="col_secect">
+                    <li>
+                        <label for="education-level">最高教育程度</label><br/>
+                        <select class="col_select_edu" id="education-level"
+                                name="level_of_education" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] == 'required' else ''}>
+                            <option value="">--</option>
+                            %for code, ed_level in UserProfile.LEVEL_OF_EDUCATION_CHOICES:
+                                <option value="${code}">${_(ed_level)}</option>
+                            %endfor
+                        </select>
+                    </li>
+                    <li>
+                        <label for="gender">性别</label><br/>
+                        <select class="col_select_gender" id="gender"
+                                name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
+                            <option value="">--</option>
+                            %for code, gender in UserProfile.GENDER_CHOICES:
+                                <option value="${code}">${_(gender)}</option>
+                            %endfor
+                        </select>
+                    </li>
+                    <li>
+                        <label for="yob">出生年份</label><br/>
+                        <select class="col_select_bir" id="yob"
+                                name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
+                            <option value="">--</option>
+                            %for year in UserProfile.VALID_YEARS:
+                                <option value="${year}">${year}</option>
+                            %endfor
+                        </select>
+                    </li>
+                </ul>
+                <label for="address-mailing" class="col_address">邮寄地址</label><br/>
+                <textarea class="col_address_texearea" id="address-mailing" name="mailing_address"></textarea><br/>
+                <label for="goals" class="col_address" id="col_address">请告诉我们您注册师大学堂的原因</label><br/>
+                <textarea class="col_reason_texearea" id="goals" name="goals"></textarea>
+                <input class="col_checkbox" id="tos-yes" type="checkbox" name="terms_of_service" value="true" required
+                       aria-required="true"/> <label for="tos-yes">我同意</label><a href="javascript:;">服务条款</a>*
+                <input class="col_checkbox" id="honorcode-yes" type="checkbox" name="honor_code" value="true"/> <label
+                    for="honorcode-yes">我同意</label><a href="javascript:;">诚信准则</a>*<br/>
+                <button class="col_submit" name="submit" type="submit" id="submitBtn" onclick="submitForm(event);">
+                    创建我的师大学堂账户
+                </button>
+            </form>
+        </div>
+
+        <div class="col_register_right" id="col_right">
+            <form action="javascript:;">
+                <label class="col_register_right_register" id="col_register_right_register">已经注册过了？</label>
+                <input type="button" class="col_button_register" id="col_button_register" value="登录" onclick="showLoginBox();"/>
+            </form>
+            <p class="col_welcome" id="col_welcome">
+
+            <h3 class="col_register_right_title">欢迎来到师大学堂</h3>
+            在师大学堂注册之后，您可以访问我们现有和将来所有的免费课程，现在还不想加入课程？注册后您将加入我们的邮件列表，您将通过邮件收到新课程的通知。
+            </p>
+            <p class="col_step">
+
+            <h3 class="col_register_right_title">下面的步骤</h3>
+            注册师大学堂的过程中，您将会收到一封激活邮件。您必须点击激活链接才能完成注册过程。如果没有看见邮件，请检查垃圾邮件夹并把来自师大学堂的邮件标记为“非垃圾邮件”，在师大学堂，我们主要通过电子邮件联系。
+            </p>
+            <p class="col_help">
+
+            <h3 class="col_register_right_title">需要帮助</h3>
+            在注册师大学堂时需要帮助？<a href="javascript:;">查看我们的F&Q来获得常见的问题解答。</a>注册成功后，大部分问题均可在具体课程讨论论坛或F&Q中得到解决。
+            </p>
+        </div>
+
+    </div>
+</div>
+<!--版权信息-->
+<div class="col_copyright_bg max-width">
+    <div class="col_copyright">
+        <span> 版权所有 © 国家数字化学习工程技术研究中心</span>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        // a标签在心窗口打开页面
+        $('a[rel="external"], a[class="new-vp"]')
+                .click(function () {
+                    window.open($(this).attr('href'));
+                    return false;
+                });
+
+        // input获取焦点时，label增加class，更改样式
+        $("form :input").focus(function () {
+            $("label[for='" + this.id + "']").parent().addClass("is-focused");
+        }).blur(function () {
+            $("label").parent().removeClass("is-focused");
+        });
+        // 弹出登录框，使整个页面灰掉
+        //关闭登录框
+        $("#login_close").click(function () {
+            $('.theme-popover-mask').hide();
+            $(".loginbox_bg").slideUp(500);
+        });
+    });
+    //呈現登錄狂
+    function showLoginBox(){
+            $('.theme-popover-mask').show();
+            $('.theme-popover-mask').height($(document).height());
+            $(".loginbox_bg").slideDown(500);
+    }
+    //下面维登录的操作
+    function toggleLoginButton(enable) {
+        //获取id为submit的提交按钮
+        var $loginButton = $('form #loginBtn');
+
+        if (enable) {
+            $loginButton.
+                    removeClass('is-disabled').
+                    attr('aria-disabled', false).
+                    removeProp('disabled').
+                    html("登录");
+        }
+        else {
+            $loginButton.
+                    addClass('is-disabled').
+                    prop('disabled', true).
+                    text("正在登录");
+        }
+    }
+    function loginForm(event) {
+        event.preventDefault();
+        toggleLoginButton(false);
+        $.ajax({
+            url: "/login_ajax",
+            data: $("#login-form").serialize(),
+            type: "POST",
+            error: function (data) {
+                alert(data.value);
+                alert(data);
+            },
+            success: function (data, textStatus) {
+                var tf=data.success;
+                var msg=data.value;
+                if(tf){
+                    location.href = "${reverse('dashboard')}";
+                }else{
+                    toggleLoginButton(true);
+                    alert(msg);
+                }
+            }
+        });
+    }
+//下面是注册的相关操作
+    (function () {
+        toggleSubmitButton(true);
+        toggleLoginButton(true);
+    })(this);
+    function toggleSubmitButton(enable) {
+        //获取id为submit的提交按钮
+        var $submitButton = $('form #submitBtn');
+
+        if (enable) {
+            $submitButton.
+                    removeClass('is-disabled').
+                    attr('aria-disabled', false).
+                    removeProp('disabled').
+                    html("注册我的师大学堂账户");
+        }
+        else {
+            $submitButton.
+                    addClass('is-disabled').
+                    prop('disabled', true).
+                    text("正在处理你的账户信息");
+        }
+    }
+    function submitForm(event) {
+        event.preventDefault();
+        toggleSubmitButton(false);
+        $.ajax({
+            url: "/create_account",
+            data: $("#register-form").serialize(),
+            type: "POST",
+            error: function (data) {
+                var dateObj = $.parseJSON(data.responseText);
+                var errorValue = dateObj.value;
+                var errorField = dateObj.field;
+                toggleSubmitButton(true);
+                $('.status.message.submission-error').addClass('is-shown').focus();
+                $('.status.message.submission-error .message-copy').html(errorValue).stop().css("display", "block");
+                $(".field-error").removeClass('field-error');
+                $("[data-field='" + errorField + "']").addClass('field-error')
+            },
+            success: function (data, textStatus) {
+                console.log(data);
+                var nextUrl = "${login_redirect_url}";
+                console.log(nextUrl);
+                if (data.redirect_url) {
+                    nextUrl = data.redirect_url;
+                }
+                //if (!isExternal(nextUrl)) {
+                   // location.href = nextUrl;
+               //} else {
+                    location.href = "${reverse('dashboard')}";
+               // }
+            }
+
+        });
+    }
+</script>
+</body>
+
+</html>

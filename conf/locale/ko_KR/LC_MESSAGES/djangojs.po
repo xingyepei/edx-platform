@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: edx-platform\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-10-30 14:32+0000\n"
-"PO-Revision-Date: 2015-10-29 17:55+0000\n"
+"POT-Creation-Date: 2015-11-18 21:01+0000\n"
+"PO-Revision-Date: 2015-11-02 17:10+0000\n"
 "Last-Translator: Sarina Canelake <sarina@edx.org>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/open-edx/edx-platform/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
@@ -1744,6 +1744,7 @@ msgid "Play"
 msgstr "재생"
 
 #: common/lib/xmodule/xmodule/js/src/video/00_i18n.js
+#: common/lib/xmodule/xmodule/js/src/video/09_play_pause_control.js
 msgid "Pause"
 msgstr "일시정지"
 
@@ -1824,12 +1825,16 @@ msgid "Try using a different browser, such as Google Chrome."
 msgstr "구글 Chrome 등 다른 브라우저를 사용하세요."
 
 #: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
-msgid "HD off"
-msgstr "HD 화질  끄기"
+msgid "High Definition"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
-msgid "HD on"
-msgstr "HD 화질  켜기"
+msgid "off"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/05_video_quality_control.js
+msgid "on"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/06_video_progress_slider.js
 msgid "Video position"
@@ -1856,14 +1861,15 @@ msgstr[0] "%(value)s 초"
 
 #: common/lib/xmodule/xmodule/js/src/video/07_video_volume_control.js
 msgid ""
-"Click on this button to mute or unmute this video or press UP or DOWN "
-"buttons to increase or decrease volume level."
+"Volume: Click on this button to mute or unmute this video or press UP or "
 msgstr ""
-"동영상의 음소거 혹은 음소거 해제를 위해 이 버튼을 클릭하거나, 볼륨을 높이거나 낮추기 위해 UP 버튼 혹은 DOWN 버튼을 눌러주세요."
 
 #: common/lib/xmodule/xmodule/js/src/video/08_video_speed_control.js
-msgid "Speeds"
-msgstr "배속"
+msgid ""
+"Speed: Press UP to enter the speed menu then use the UP and DOWN arrow keys "
+"to navigate the different speeds, then press ENTER to change to the selected"
+" speed."
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/09_play_skip_control.js
 msgid "Skip"
@@ -1878,8 +1884,19 @@ msgid "Do not show again"
 msgstr "다시 재생하지 말기"
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
-msgid "Turn off captions"
-msgstr "자막 끄기"
+msgid "Turn off transcript"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid ""
+"Language: Press the UP arrow key to enter the language menu, then use UP and"
+" DOWN arrow keys to navigate language options. Press ENTER to change to the "
+"selected language."
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid "Open language menu"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
 msgid ""
@@ -1892,8 +1909,12 @@ msgid "Caption will be displayed when "
 msgstr "자막이 다음의 경우 표시됩니다."
 
 #: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
-msgid "Turn on captions"
-msgstr "자막 켜기"
+msgid "Turn on transcripts"
+msgstr ""
+
+#: common/lib/xmodule/xmodule/js/src/video/09_video_caption.js
+msgid "Turn off transcripts"
+msgstr ""
 
 #: common/lib/xmodule/xmodule/public/js/library_content_edit.js
 msgid "Updating with latest library content"
@@ -3573,11 +3594,23 @@ msgid "Save changes"
 msgstr "변경사항 저장"
 
 #: lms/static/js/ccx/schedule.js
+msgid "Please enter valid start date and time."
+msgstr ""
+
+#: lms/static/js/ccx/schedule.js
+msgid "Due date cannot be before start date."
+msgstr ""
+
+#: lms/static/js/ccx/schedule.js
 msgid "Enter Due Date and Time"
 msgstr ""
 
 #: lms/static/js/ccx/schedule.js
 msgid "Enter Start Date and Time"
+msgstr ""
+
+#: lms/static/js/certificates/models/certificate_exception.js
+msgid "Student username/email is required."
 msgstr ""
 
 #: lms/static/js/courseware/credit_progress.js
@@ -3808,6 +3841,14 @@ msgstr "본 강좌의 모든 학습자를 위한 강좌 이수증 생성을 시�
 msgid "Error while generating certificates. Please try again."
 msgstr "강좌 이수증을 발급하는 동안 오류가 발생했습니다. 다시 시도하세요."
 
+#: lms/static/js/instructor_dashboard/certificates.js
+msgid "Start regenerating certificates for students in this course?"
+msgstr ""
+
+#: lms/static/js/instructor_dashboard/certificates.js
+msgid "Error while regenerating certificates. Please try again."
+msgstr ""
+
 #: lms/static/js/instructor_dashboard/ecommerce.js
 msgid ""
 "There was a problem creating the report. Select \"Create Executive Summary\""
@@ -3877,6 +3918,10 @@ msgstr "장바구니에 선택된 강좌를 추가하고 있습니다."
 #: lms/static/js/student_account/views/FinishAuthView.js
 msgid "Loading your courses"
 msgstr "강좌를 불러오고 있습니다."
+
+#: lms/static/js/student_account/views/LoginView.js
+msgid "Please check your internet connection and try again."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Basic Account Information (required)"
@@ -3976,8 +4021,10 @@ msgid "Connect your {accountName} account"
 msgstr "{accountName} 계정에 연결하십시오."
 
 #: lms/static/js/student_account/views/account_settings_fields.js
-msgid "We've sent a confirmation message to {new_email_address}. "
-msgstr "{new_email_address}로 확인 메세지를 보냈습니다. "
+msgid ""
+"We've sent a confirmation message to {new_email_address}. Click the link in "
+"the message to update your email address."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_fields.js
 msgid ""
@@ -3985,8 +4032,10 @@ msgid ""
 msgstr "언어가 바뀌어졌는지 확인하기 위해 로그아웃 하고 다시 로그인 하세요."
 
 #: lms/static/js/student_account/views/account_settings_fields.js
-msgid "We've sent a message to {email_address}. "
-msgstr "{email_address} 로 이메일을 보냈습니다. "
+msgid ""
+"We've sent a message to {email_address}. Click the link in the message to "
+"reset your password."
+msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_fields.js
 msgid "Unlink"
@@ -4113,6 +4162,14 @@ msgstr "PayPal로 결제하기"
 #: lms/static/js/verify_student/views/make_payment_step_view.js
 msgid "Checkout with {processor}"
 msgstr "{processor}로 결제하기"
+
+#: lms/static/js/verify_student/views/make_payment_step_view.js
+msgid "All payment options are currently unavailable."
+msgstr ""
+
+#: lms/static/js/verify_student/views/make_payment_step_view.js
+msgid "Try the transaction again in a few minutes."
+msgstr ""
 
 #: lms/static/js/verify_student/views/make_payment_step_view.js
 msgid "An error has occurred. Please try again."
@@ -4322,10 +4379,6 @@ msgstr ""
 
 #: cms/static/js/certificates/models/certificate.js
 msgid "Signatory field(s) has invalid data."
-msgstr ""
-
-#: cms/static/js/certificates/models/signatory.js
-msgid "Signatory title should span over maximum of 2 lines."
 msgstr ""
 
 #: cms/static/js/certificates/views/certificate_details.js
@@ -4976,7 +5029,6 @@ msgid "Edit section release date"
 msgstr ""
 
 #: cms/static/js/views/overview_assignment_grader.js
-#: cms/templates/js/course-outline.underscore
 #: cms/templates/js/grading-editor.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/course-outline.05246d1f7f2d.underscore
 #: test_root/staticfiles/cms/coffee/fixtures/course-outline.underscore
@@ -5906,15 +5958,6 @@ msgstr ""
 #: test_root/staticfiles/cms/templates/course-outline.05246d1f7f2d.underscore
 #: test_root/staticfiles/cms/templates/course-outline.underscore
 msgid "Due:"
-msgstr ""
-
-#: cms/templates/js/course-outline.underscore
-#: lms/templates/ccx/schedule.underscore
-#: test_root/staticfiles/cms/templates/ccx/schedule.50fbfd435a6f.underscore
-#: test_root/staticfiles/cms/templates/ccx/schedule.underscore
-#: test_root/staticfiles/lms/templates/ccx/schedule.50fbfd435a6f.underscore
-#: test_root/staticfiles/lms/templates/ccx/schedule.underscore
-msgid "Due Date"
 msgstr ""
 
 #: cms/templates/js/course-outline.underscore
@@ -7639,6 +7682,12 @@ msgid "endorsed %(time_ago)s"
 msgstr ""
 
 #: common/static/common/templates/discussion/thread-response.underscore
+#, python-format
+msgid "Show Comment (%(num_comments)s)"
+msgid_plural "Show Comments (%(num_comments)s)"
+msgstr[0] ""
+
+#: common/static/common/templates/discussion/thread-response.underscore
 msgid "fmts"
 msgstr ""
 
@@ -7748,6 +7797,7 @@ msgid "username or email"
 msgstr ""
 
 #: lms/djangoapps/support/static/support/templates/certificates_results.underscore
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
 msgid "No results"
 msgstr ""
 
@@ -7911,6 +7961,14 @@ msgstr ""
 #: test_root/staticfiles/lms/templates/ccx/schedule.50fbfd435a6f.underscore
 #: test_root/staticfiles/lms/templates/ccx/schedule.underscore
 msgid "Start Date"
+msgstr ""
+
+#: lms/templates/ccx/schedule.underscore
+#: test_root/staticfiles/cms/templates/ccx/schedule.50fbfd435a6f.underscore
+#: test_root/staticfiles/cms/templates/ccx/schedule.underscore
+#: test_root/staticfiles/lms/templates/ccx/schedule.50fbfd435a6f.underscore
+#: test_root/staticfiles/lms/templates/ccx/schedule.underscore
+msgid "Due Date"
 msgstr ""
 
 #: lms/templates/ccx/schedule.underscore
@@ -8249,6 +8307,52 @@ msgstr ""
 #: test_root/staticfiles/lms/templates/fields/field_text.46480061c06b.underscore
 #: test_root/staticfiles/lms/templates/fields/field_text.underscore
 msgid "title"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list-editor.underscore
+msgid ""
+"Specify either Student's username or email for whom to create certificate "
+"exception"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list-editor.underscore
+msgid "Enter Notes associated with this certificate exception"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "User ID"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "User Email"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Date Exception Granted"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Notes"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate a Certificate for all"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "New"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "additions to the Exception list"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate a Certificate for all users on the Exception list"
+msgstr ""
+
+#: lms/templates/instructor/instructor_dashboard_2/certificate-white-list.underscore
+msgid "Generate Exception Certificates"
 msgstr ""
 
 #: lms/templates/instructor/instructor_dashboard_2/cohort-discussions-course-wide.underscore
@@ -10132,11 +10236,19 @@ msgid "(Add signatories for a certificate)"
 msgstr ""
 
 #: cms/templates/js/course-outline.underscore
+msgid "Ungraded"
+msgstr ""
+
+#: cms/templates/js/course-outline.underscore
+msgid "Practice proctored Exam"
+msgstr ""
+
+#: cms/templates/js/course-outline.underscore
 msgid "Proctored Exam"
 msgstr ""
 
 #: cms/templates/js/course-outline.underscore
-msgid "Timed and Proctored Exam"
+msgid "Timed Exam"
 msgstr ""
 
 #: cms/templates/js/list.underscore
@@ -10165,11 +10277,39 @@ msgid "Image must be in PNG format"
 msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "Timed Exam"
+msgid "Additional Options:"
 msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is timed"
+msgid "Timed"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Use a timed exam to limit the time learners can spend on problems in this "
+"subsection. Learners must submit answers before the time expires. You can "
+"allow additional time on per learner basis through the Instructor Dashboard."
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid "Proctored"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Proctored exams are timed, and software records video of each learner taking"
+" the exam. These videos are then reviewed by a third party."
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid "Practice Proctored"
+msgstr ""
+
+#: cms/templates/js/timed-examination-preference-editor.underscore
+msgid ""
+"Use a practice proctored exam to introduce learners to the proctoring tools "
+"and processes. Results of the practice exam do not count towards the "
+"learner's grade."
 msgstr ""
 
 #: cms/templates/js/timed-examination-preference-editor.underscore
@@ -10179,31 +10319,9 @@ msgstr ""
 #: cms/templates/js/timed-examination-preference-editor.underscore
 #, python-format
 msgid ""
-"Students see warnings when 20% and 5% of the allotted time remains. In "
-"certain cases, students can be granted allowances that give them extra time "
-"to complete the exam."
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is for practice only"
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid ""
-"Learners can experience the proctoring software setup process and try some "
-"example problems. Make sure this practice exam is set up as an ungraded "
-"exam."
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid "This exam is proctored"
-msgstr ""
-
-#: cms/templates/js/timed-examination-preference-editor.underscore
-msgid ""
-"Students can choose to take this exam with or without online proctoring, but"
-" only students who choose the proctored option are eligible for credit. "
-"Proctored exams must also be timed exams."
+"Learners see warnings when 20% and 5% of the allotted time remains. You can "
+"grant learners extra time to complete the exam through the Instructor "
+"Dashboard."
 msgstr ""
 
 #: cms/templates/js/verification-access-editor.underscore

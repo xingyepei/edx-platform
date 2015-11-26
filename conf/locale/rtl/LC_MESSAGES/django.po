@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1a\n"
 "Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2015-10-30 16:56+0000\n"
-"PO-Revision-Date: 2015-10-30 16:56:53.240310\n"
+"POT-Creation-Date: 2015-11-22 07:11+0000\n"
+"PO-Revision-Date: 2015-11-22 07:12:01.408139\n"
 "Last-Translator: \n"
 "Language-Team: openedx-translation <openedx-translation@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -11198,6 +11198,7 @@ msgstr ""
 "عسهرل ش يهببثقثرف زقخصسثق خق ش رثصثق دثقسهخر خب غخعق زقخصسثق."
 
 #: lms/templates/register-shib.html lms/templates/register.html
+#: lms/templates/nercel-templates/col-register.html
 msgid "The following errors occurred while processing your registration:"
 msgstr "فاث بخممخصهرل ثققخقس خذذعققثي صاهمث حقخذثسسهرل غخعق قثلهسفقشفهخر:"
 
@@ -12080,6 +12081,7 @@ msgstr ""
 #: lms/templates/ccx/enrollment.html
 #: lms/templates/courseware/course_about.html
 #: lms/templates/instructor/instructor_dashboard_2/membership.html
+#: lms/templates/nercel-templates/col-registerCourse.html
 msgid "Enroll"
 msgstr "ثرقخمم"
 
@@ -12498,6 +12500,7 @@ msgid "This content is graded"
 msgstr "فاهس ذخرفثرف هس لقشيثي"
 
 #: lms/templates/courseware/course_about.html
+#: lms/templates/nercel-templates/col-registerCourse.html
 msgid "An error occurred. Please try again later."
 msgstr "شر ثققخق خذذعققثي. حمثشسث فقغ شلشهر مشفثق."
 
@@ -13353,10 +13356,16 @@ msgstr ""
 "{cert_name_short}. شر اخرخق ذخيث {cert_name_short} اشس زثثر لقشرفثي هرسفثشي."
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+msgid "{category} Program Course"
+msgstr "{category} حقخلقشو ذخعقسث"
+
+#: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "{course_number} {course_name} Home Page"
 msgstr "{course_number} {course_name} اخوث حشلث"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "{course_number} {course_name} Cover Image"
 msgstr "{course_number} {course_name} ذخدثق هوشلث"
 
@@ -13365,10 +13374,12 @@ msgid "Enrolled as: "
 msgstr "ثرقخممثي شس: "
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Ended - {end_date}"
 msgstr "ثريثي - {end_date}"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Started - {start_date}"
 msgstr "سفشقفثي - {start_date}"
 
@@ -13377,6 +13388,7 @@ msgid "Coming Soon"
 msgstr "ذخوهرل سخخر"
 
 #: lms/templates/dashboard/_dashboard_course_listing.html
+#: lms/templates/nercel-templates/col-mycourse.html
 msgid "Starts - {start_date}"
 msgstr "سفشقفس - {start_date}"
 
@@ -13663,6 +13675,22 @@ msgid ""
 msgstr ""
 "فاث {provider_name} شذذخعرف غخع سثمثذفثي هس شمقثشيغ مهرنثي فخ شرخفاثق "
 "{platform_name} شذذخعرف."
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid "{category} Program: Interested in more courses in this subject?"
+msgstr "{category} حقخلقشو: هرفثقثسفثي هر وخقث ذخعقسثس هر فاهس سعزتثذف?"
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid ""
+"This course is 1 of {course_count} courses in the "
+"{link_start}{program_display_name}{link_end} {program_category}."
+msgstr ""
+"فاهس ذخعقسث هس 1 خب {course_count} ذخعقسثس هر فاث "
+"{link_start}{program_display_name}{link_end} {program_category}."
+
+#: lms/templates/dashboard/_dashboard_xseries_info.html
+msgid "View {category} Details"
+msgstr "دهثص {category} يثفشهمس"
 
 #: lms/templates/debug/run_python_form.html
 msgid "Results:"
@@ -16304,6 +16332,12 @@ msgstr "خن"
 #: lms/templates/modal/accessible_confirm.html
 msgid "open"
 msgstr "خحثر"
+
+#: lms/templates/nercel-templates/col-register.html
+msgid ""
+"We're sorry, {platform_name} enrollment is not available in your region"
+msgstr ""
+"صث'قث سخققغ, {platform_name} ثرقخمموثرف هس رخف شدشهمشزمث هر غخعق قثلهخر"
 
 #: lms/templates/open_ended_problems/combined_notifications.html
 msgid "{course_number} Combined Notifications"
