@@ -175,8 +175,8 @@ def index(request, extra_context=None, user=AnonymousUser()):
         enroll_account =CourseEnrollment.objects.enrollment_counts(course_id)
     context = {'courses': courses}
     context.update(extra_context)
-    return render_to_response('index.html', context)
-    #return render_to_response('nercel-templates/col-index.html', context)
+    #return render_to_response('index.html', context)
+    return render_to_response('nercel-templates/col-index.html', context)
 
 def process_survey_link(survey_link, user):
     """

@@ -1,3 +1,4 @@
+#encoding=utf-8
 """
 Third-party auth provider configuration API.
 """
@@ -5,7 +6,6 @@ from .models import (
     OAuth2ProviderConfig, SAMLConfiguration, SAMLProviderConfig, LTIProviderConfig,
     _PSA_OAUTH2_BACKENDS, _PSA_SAML_BACKENDS, _LTI_BACKENDS,
 )
-
 
 class Registry(object):
     """
@@ -97,3 +97,18 @@ class Registry(object):
                 provider = LTIProviderConfig.current(consumer_key)
                 if provider.backend_name == backend_name and provider.enabled:
                     yield provider
+#****************微博登录服务***************#
+class WeiboOauth2(BaseProvider):
+        BACKEND_CLASS = weibo.WeiboOAuth2
+        ICON_CLASS = 'icon-weibo-plus'
+        NAME = 'Weibo'
+        SETTINGS = {
+            'SOCIAL_AUTH_WEIBO_KEY': None,
+            'SOCIAL_AUTH_WEIBO_SECRET':None,
+        }
+        @classmethod
+        def get_email(cls, provider_details):
+            return provider_details.get('email')
+        @classmethod
+        def get_name(cls, provider_details):
+            return provider_details.get('fullname')
